@@ -1,3 +1,5 @@
+[← Back to Documentation Index](../index.md)
+
 # P0-06: Manual Developer Guide — i18n Internationalization (`ngx-translate`)
 
 ## Overview

@@ -1,3 +1,5 @@
+[← Back to Documentation Index](../index.md)
+
 # P0-04: Manual Developer Guide — Auth Guards & Token Management
 
 ## Overview

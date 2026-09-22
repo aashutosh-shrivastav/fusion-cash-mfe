@@ -1,3 +1,5 @@
+[← Back to Documentation Index](../index.md)
+
 # P0-07: Manual Developer Guide — OpenAPI Client Auto-Generation
 
 ## Overview

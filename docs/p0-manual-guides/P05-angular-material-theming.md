@@ -1,3 +1,5 @@
+[← Back to Documentation Index](../index.md)
+
 # P0-05: Manual Developer Guide — Angular Material 3 & Custom Theming
 
 ## Overview
