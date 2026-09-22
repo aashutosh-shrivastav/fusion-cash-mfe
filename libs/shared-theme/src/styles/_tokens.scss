@@ -1,0 +1,97 @@
+// libs/shared-theme/src/styles/_tokens.scss
+@use '../brands/brand-default' as brand;
+
+// ============================================================
+// Design Tokens (CSS Custom Properties)
+//
+// These are the canonical tokens consumed by ALL components
+// across ALL MFEs. They bridge Angular Material's system tokens
+// with our application-level design system.
+//
+// RULE: Components must ONLY use these tokens. Never use
+// hardcoded colors, font sizes, or spacing values.
+// ============================================================
+
+:root {
+  // ── Brand System Variables (M3 Overrides) ───────────────
+  // We override the generated M3 system variables with exact brand colors
+  // to ensure components use the exact hex codes (e.g., Impact Red).
+  --mat-sys-primary:              #{brand.$primary};
+  --mat-sys-on-primary:           #{brand.$on-primary};
+  --mat-sys-primary-container:    #{brand.$primary-container};
+  --mat-sys-on-primary-container: #{brand.$on-primary-container};
+  
+  --mat-sys-secondary:              #{brand.$secondary};
+  --mat-sys-on-secondary:           #{brand.$on-secondary};
+  --mat-sys-secondary-container:    #{brand.$secondary-container};
+  --mat-sys-on-secondary-container: #{brand.$on-secondary-container};
+
+  // ── Brand Tokens ──────────────────────────────────────────
+  --fc-color-primary:             var(--mat-sys-primary);
+  --fc-color-primary-container:   var(--mat-sys-primary-container);
+  --fc-color-on-primary:          var(--mat-sys-on-primary);
+  
+  --fc-color-secondary:           var(--mat-sys-secondary);
+  --fc-color-secondary-container: var(--mat-sys-secondary-container);
+  --fc-color-on-secondary:        var(--mat-sys-on-secondary);
+  --fc-color-tertiary:            #{brand.$tertiary};
+  --fc-color-error:               #{brand.$error};
+  --fc-color-on-error:            #{brand.$on-error};
+
+  // Surface colors - tied to M3 for automatic Light/Dark mode
+  --fc-color-surface:             var(--mat-sys-surface, #{brand.$surface});
+  --fc-color-surface-dim:         var(--mat-sys-surface-dim, #{brand.$surface-dim});
+  --fc-color-surface-container:   var(--mat-sys-surface-container, #{brand.$surface-container});
+  --fc-color-on-surface:          var(--mat-sys-on-surface, #{brand.$on-surface});
+  --fc-color-on-surface-variant:  var(--mat-sys-on-surface-variant, #{brand.$on-surface-variant});
+  --fc-color-outline:             var(--mat-sys-outline, #{brand.$outline});
+  --fc-color-outline-variant:     var(--mat-sys-outline-variant, #{brand.$outline-variant});
+
+  // ── Typography Tokens ─────────────────────────────────────
+  --fc-font-family-base:      #{brand.$font-family-base};
+  --fc-font-family-heading:   #{brand.$font-family-heading};
+  --fc-font-family-mono:      'Fira Code', 'Consolas', monospace;
+
+  --fc-font-size-xs:    0.75rem;    // 12px
+  --fc-font-size-sm:    0.875rem;   // 14px
+  --fc-font-size-md:    1rem;       // 16px
+  --fc-font-size-lg:    1.125rem;   // 18px
+  --fc-font-size-xl:    1.25rem;    // 20px
+  --fc-font-size-2xl:   1.5rem;     // 24px
+  --fc-font-size-3xl:   1.875rem;   // 30px
+  --fc-font-size-4xl:   2.25rem;    // 36px
+
+  --fc-font-weight-regular:   400;
+  --fc-font-weight-medium:    500;
+  --fc-font-weight-semibold:  600;
+  --fc-font-weight-bold:      700;
+
+  // ── Spacing Tokens ────────────────────────────────────────
+  --fc-spacing-xs:    4px;
+  --fc-spacing-sm:    8px;
+  --fc-spacing-md:    16px;
+  --fc-spacing-lg:    24px;
+  --fc-spacing-xl:    32px;
+  --fc-spacing-2xl:   48px;
+  --fc-spacing-3xl:   64px;
+
+  // ── Shape (Border Radius) Tokens ──────────────────────────
+  --fc-radius-xs:     2px;
+  --fc-radius-sm:     4px;
+  --fc-radius-md:     8px;
+  --fc-radius-lg:     12px;
+  --fc-radius-xl:     16px;
+  --fc-radius-full:   9999px;
+
+  // ── Elevation (Shadow) Tokens ─────────────────────────────
+  --fc-shadow-none:   none;
+  --fc-shadow-sm:     0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --fc-shadow-md:     0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --fc-shadow-lg:     0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --fc-shadow-xl:     0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  // ── Transition Tokens ─────────────────────────────────────
+  --fc-transition-fast:     150ms ease;
+  --fc-transition-normal:   250ms ease;
+  --fc-transition-slow:     350ms ease;
+}

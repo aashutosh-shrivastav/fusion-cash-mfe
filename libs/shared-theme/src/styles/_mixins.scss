@@ -1,0 +1,51 @@
+// libs/shared-theme/src/styles/_mixins.scss
+
+// ============================================================
+// Utility Mixins
+//
+// Consumers use these in their component SCSS files.
+// These abstract the CSS custom properties for convenience.
+// ============================================================
+
+/// Apply elevation shadow by level (0-4)
+@mixin elevation($level: 1) {
+  @if $level == 0 { box-shadow: var(--fc-shadow-none); }
+  @else if $level == 1 { box-shadow: var(--fc-shadow-sm); }
+  @else if $level == 2 { box-shadow: var(--fc-shadow-md); }
+  @else if $level == 3 { box-shadow: var(--fc-shadow-lg); }
+  @else if $level == 4 { box-shadow: var(--fc-shadow-xl); }
+}
+
+/// Apply standard card surface styling
+@mixin card-surface {
+  background-color: var(--fc-color-surface-container);
+  border: 1px solid var(--fc-color-outline-variant);
+  border-radius: var(--fc-radius-lg);
+  @include elevation(1);
+}
+
+/// Apply standard page padding
+@mixin page-padding {
+  padding: var(--fc-spacing-lg) var(--fc-spacing-xl);
+}
+
+/// Heading typography
+@mixin heading($size: '2xl') {
+  font-family: var(--fc-font-family-heading);
+  font-weight: var(--fc-font-weight-semibold);
+  color: var(--fc-color-on-surface);
+  @if $size == 'xl'  { font-size: var(--fc-font-size-xl); }
+  @if $size == '2xl' { font-size: var(--fc-font-size-2xl); }
+  @if $size == '3xl' { font-size: var(--fc-font-size-3xl); }
+  @if $size == '4xl' { font-size: var(--fc-font-size-4xl); }
+}
+
+/// Body typography
+@mixin body($size: 'md') {
+  font-family: var(--fc-font-family-base);
+  font-weight: var(--fc-font-weight-regular);
+  color: var(--fc-color-on-surface);
+  @if $size == 'sm' { font-size: var(--fc-font-size-sm); }
+  @if $size == 'md' { font-size: var(--fc-font-size-md); }
+  @if $size == 'lg' { font-size: var(--fc-font-size-lg); }
+}

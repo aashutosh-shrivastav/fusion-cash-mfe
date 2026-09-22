@@ -1,0 +1,120 @@
+{
+  "name": "payments",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "fc",
+  "sourceRoot": "payments/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/payments",
+        "index": "payments/src/index.html",
+        "main": "payments/src/main.ts",
+        "tsConfig": "payments/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "payments/public"
+          }
+        ],
+        "styles": [
+          "payments/src/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared-theme/src/styles"
+          ]
+        },
+        "customWebpackConfig": {
+          "path": "payments/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "payments/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/angular:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 3002,
+        "publicHost": "http://localhost:3002",
+        "headers": {
+          "Access-Control-Allow-Origin": "*"
+        }
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "payments:build:production"
+        },
+        "development": {
+          "buildTarget": "payments:build:development"
+        }
+      },
+      "dependsOn": [
+        "shell:serve"
+      ]
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "payments:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "payments:build",
+        "port": 3002,
+        "watch": false,
+        "cors": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "payments:build:development"
+        },
+        "production": {
+          "buildTarget": "payments:build:production"
+        }
+      }
+    }
+  }
+}

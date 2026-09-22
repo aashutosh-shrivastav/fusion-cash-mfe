@@ -1,0 +1,35 @@
+// libs/shared-theme/src/styles/theme.scss
+
+// ============================================================
+// Master Theme Entry Point
+//
+// Import this file ONCE in the Shell's styles.scss.
+// MFEs inherit the theme via CSS custom property inheritance.
+//
+// Usage in Shell's styles.scss:
+//   @use 'theme';
+// ============================================================
+
+@use '@angular/material' as mat;
+@use './material-theme' as fc-mat;
+
+// 4. Our design tokens (CSS custom properties)
+@use './tokens';
+
+// 5. Angular Material component overrides
+@use './overrides';
+
+// 1. Angular Material core styles (typography, ripple, etc.)
+@include mat.core();
+
+// 2. Apply light theme by default
+:root,
+.light-theme {
+  @include mat.all-component-themes(fc-mat.$fc-light-theme);
+}
+
+// 3. Dark theme via class toggle
+.dark-theme {
+  @include mat.all-component-themes(fc-mat.$fc-dark-theme);
+  color-scheme: dark;
+}

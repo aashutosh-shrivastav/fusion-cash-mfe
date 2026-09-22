@@ -1,0 +1,15 @@
+<div class="shell-layout">
+  <div class="sidebar">
+    <h2>Fusion Portal</h2>
+    <button routerLink="/">Home</button>
+    <button routerLink="/balance">Balance Service MFE</button>
+    <button routerLink="/payments">Payments MFE</button>
+    
+    <button (click)="themeService.toggleTheme()" style="margin-top: 20px;">
+      {{ themeService.isDark() ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

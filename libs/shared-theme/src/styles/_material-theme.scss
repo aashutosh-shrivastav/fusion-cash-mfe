@@ -1,0 +1,42 @@
+// libs/shared-theme/src/styles/_material-theme.scss
+@use '@angular/material' as mat;
+@use './palettes' as palettes;
+
+// ============================================================
+// Angular Material M3 Theme
+//
+// CRITICAL: use-system-variables: true
+// This makes Angular Material output CSS custom properties
+// (e.g., --mat-sys-primary, --mat-sys-on-surface) instead of
+// hardcoded color values. This is what enables runtime theming.
+// ============================================================
+
+$fc-light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: palettes.$fc-primary-palette,
+    tertiary: palettes.$fc-tertiary-palette,
+    use-system-variables: true,
+  ),
+  typography: (
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+$fc-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: palettes.$fc-primary-palette,
+    tertiary: palettes.$fc-tertiary-palette,
+    use-system-variables: true,
+  ),
+  typography: (
+    use-system-variables: true,
+  ),
+  density: (
+    scale: 0,
+  ),
+));

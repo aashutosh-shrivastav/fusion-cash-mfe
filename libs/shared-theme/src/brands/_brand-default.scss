@@ -1,0 +1,44 @@
+// libs/shared-theme/src/brands/_brand-default.scss
+
+// ============================================================
+// Default Brand: Tech Mahindra
+//
+// Override these values in a customer-specific brand file
+// (e.g., _brand-customer-x.scss) for white-labeling.
+//
+// To generate M3 color values from a brand hex:
+// https://material-foundation.github.io/material-theme-builder/
+// ============================================================
+
+// ── Primary ─────────────────────────────────────────────────
+$primary:                 #E31837;    // Impact Red
+$primary-container:       #FFDAD6;
+$on-primary:              #FFFFFF;
+$on-primary-container:    #410002;
+
+// ── Secondary ───────────────────────────────────────────────
+$secondary:               #4D4D4F;    // Steel Grey
+$secondary-container:     #D0D0D2;
+$on-secondary:            #FFFFFF;
+$on-secondary-container:  #1A1A1C;
+
+// ── Tertiary ────────────────────────────────────────────────
+$tertiary:                #7c4dff;    // Deep Purple A200
+$on-tertiary:             #ffffff;
+
+// ── Error ───────────────────────────────────────────────────
+$error:                   #d32f2f;    // Red 700
+$on-error:                #ffffff;
+
+// ── Surface ─────────────────────────────────────────────────
+$surface:                 #fafafa;
+$surface-dim:             #f5f5f5;
+$surface-container:       #ffffff;
+$on-surface:              #212121;
+$on-surface-variant:      #616161;
+$outline:                 #bdbdbd;
+$outline-variant:         #e0e0e0;
+
+// ── Typography ──────────────────────────────────────────────
+$font-family-base:        'Inter', 'Roboto', sans-serif;
+$font-family-heading:     'Inter', 'Roboto', sans-serif;

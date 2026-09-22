@@ -1,0 +1,19 @@
+// libs/shared-theme/src/styles/_palettes.scss
+@use '@angular/material' as mat;
+
+// ============================================================
+// Custom M3 palettes derived from brand colors.
+// These feed into mat.define-theme() and generate system tokens.
+//
+// To create custom palettes from a brand hex color, use:
+// https://material-foundation.github.io/material-theme-builder/
+// ============================================================
+
+// Default brand: Tech Mahindra
+$fc-primary-palette: mat.$red-palette;
+$fc-secondary-palette: mat.$azure-palette;
+$fc-tertiary-palette: mat.$violet-palette;
+$fc-error-palette: mat.$red-palette;
+
+// For customer branding, override these variables in
+// brands/_brand-customer-x.scss before importing this file.

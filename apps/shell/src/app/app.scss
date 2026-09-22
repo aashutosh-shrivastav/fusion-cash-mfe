@@ -1,0 +1,43 @@
+.shell-layout {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 250px;
+  background-color: var(--fc-color-surface-container);
+  border-right: 1px solid var(--fc-color-outline-variant);
+  color: var(--fc-color-on-surface);
+  padding: var(--fc-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fc-spacing-sm);
+  
+  h2 {
+    font-family: var(--fc-font-family-heading);
+    font-size: var(--fc-font-size-xl);
+    margin-bottom: var(--fc-spacing-md);
+    color: var(--fc-color-primary);
+    border-bottom: 2px solid var(--fc-color-primary);
+    padding-bottom: var(--fc-spacing-sm);
+  }
+}
+.sidebar button {
+  padding: var(--fc-spacing-sm) var(--fc-spacing-md);
+  background-color: transparent;
+  color: var(--fc-color-on-surface);
+  border: 1px solid var(--fc-color-outline-variant);
+  border-radius: var(--fc-radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--fc-transition-fast);
+}
+.sidebar button:hover {
+  background-color: var(--fc-color-primary-container);
+  color: var(--fc-color-on-primary-container);
+  border-color: var(--fc-color-primary);
+}
+.content {
+  flex: 1;
+  padding: var(--fc-spacing-2xl);
+  background-color: var(--fc-color-surface);
+}

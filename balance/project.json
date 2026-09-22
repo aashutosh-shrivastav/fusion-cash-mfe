@@ -1,0 +1,120 @@
+{
+  "name": "balance",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "fc",
+  "sourceRoot": "balance/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/balance",
+        "index": "balance/src/index.html",
+        "main": "balance/src/main.ts",
+        "tsConfig": "balance/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "balance/public"
+          }
+        ],
+        "styles": [
+          "balance/src/styles.scss"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared-theme/src/styles"
+          ]
+        },
+        "customWebpackConfig": {
+          "path": "balance/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "balance/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/angular:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 3001,
+        "publicHost": "http://localhost:3001",
+        "headers": {
+          "Access-Control-Allow-Origin": "*"
+        }
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "balance:build:production"
+        },
+        "development": {
+          "buildTarget": "balance:build:development"
+        }
+      },
+      "dependsOn": [
+        "shell:serve"
+      ]
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "balance:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "balance:build",
+        "port": 3001,
+        "watch": false,
+        "cors": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "balance:build:development"
+        },
+        "production": {
+          "buildTarget": "balance:build:production"
+        }
+      }
+    }
+  }
+}

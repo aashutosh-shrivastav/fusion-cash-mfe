@@ -1,0 +1,33 @@
+// libs/shared-theme/src/styles/_overrides.scss
+@use '@angular/material' as mat;
+
+// ============================================================
+// Angular Material Component Overrides
+//
+// Uses mat.*-overrides() mixins — the ONLY upgrade-safe way
+// to customize Angular Material component appearance.
+//
+// DO NOT override internal .mat-* or .mdc-* CSS classes.
+// ============================================================
+
+:root {
+  // ── Buttons ─────────────────────────────────────────────
+  @include mat.button-overrides((
+    filled-container-color: var(--fc-color-primary),
+    filled-label-text-color: var(--fc-color-on-primary),
+    filled-container-shape: var(--fc-radius-md),
+  ));
+
+  // ── Cards ───────────────────────────────────────────────
+  @include mat.card-overrides((
+    elevated-container-shape: var(--fc-radius-lg),
+  ));
+
+  // ── Form Fields ─────────────────────────────────────────
+  @include mat.form-field-overrides((
+    filled-container-shape: var(--fc-radius-sm),
+  ));
+
+  // Add more component overrides as needed.
+  // Refer to: https://material.angular.io/components/<component>/styling
+}

@@ -1,0 +1,42 @@
+// libs/shared-theme/src/brands/_brand-template.scss
+
+// ============================================================
+// Brand Template: [CUSTOMER_NAME]
+//
+// INSTRUCTIONS:
+// 1. Copy this file as _brand-[customer-name].scss
+// 2. Fill in the brand colors (get from design team)
+// 3. In _tokens.scss, change the import:
+//    @use './brands/brand-[customer-name]' as brand;
+// 4. Rebuild the app
+//
+// TIP: Use https://material-foundation.github.io/material-theme-builder/
+//      to generate M3-compliant color values from a single brand hex.
+// ============================================================
+
+$primary:                 #CHANGE_ME;
+$primary-container:       #CHANGE_ME;
+$on-primary:              #ffffff;
+$on-primary-container:    #CHANGE_ME;
+
+$secondary:               #CHANGE_ME;
+$secondary-container:     #CHANGE_ME;
+$on-secondary:            #ffffff;
+$on-secondary-container:  #CHANGE_ME;
+
+$tertiary:                #CHANGE_ME;
+$on-tertiary:             #ffffff;
+
+$error:                   #d32f2f;
+$on-error:                #ffffff;
+
+$surface:                 #fafafa;
+$surface-dim:             #f5f5f5;
+$surface-container:       #ffffff;
+$on-surface:              #212121;
+$on-surface-variant:      #616161;
+$outline:                 #bdbdbd;
+$outline-variant:         #e0e0e0;
+
+$font-family-base:        'Inter', 'Roboto', sans-serif;
+$font-family-heading:     'Inter', 'Roboto', sans-serif;
