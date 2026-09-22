@@ -33,7 +33,7 @@ Add `openapitools.json` in workspace root:
         "additionalProperties": {
           "npmName": "@fusion-cash-mfe/api-client-balance",
           "supportsES6": true,
-          "ngVersion": "19.0.0"
+          "ngVersion": "22.0.0"
         }
       }
     }

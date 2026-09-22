@@ -9,7 +9,7 @@ This document outlines the Micro Frontend architecture for the new **Balance Ser
 - **Decoupled UI deployment** — frontend is not embedded inside backend WARs.
 - **Build-time MFE selection** — customer releases contain only licensed MFE code.
 - **Monorepo with Nx** — enabling parallel development and shared library management.
-- **Angular 19/22** with Webpack Module Federation (or Angular's native federation).
+- **Angular 22** with Webpack Module Federation (or Angular's native federation).
 
 > [!IMPORTANT]
 > **Immediate Priority:** Stand up the Balance Service MFE so that one team (5 devs) can begin development immediately. Payments MFE and legacy integration (Liquidity/ICL) will follow per roadmap.

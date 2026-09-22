@@ -3,7 +3,7 @@
 # P0-03: Manual Developer Guide — HTTP Interceptor Chain
 
 ## Overview
-This guide demonstrates setting up functional HTTP interceptors in Angular 19/22 using `provideHttpClient(withInterceptors([...]))`.
+This guide demonstrates setting up functional HTTP interceptors in Angular 22 using `provideHttpClient(withInterceptors([...]))`.
 
 ---
 

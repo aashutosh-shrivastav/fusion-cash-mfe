@@ -1,8 +1,8 @@
 # Fusion Cash Management — Micro Frontend (MFE) Monorepo
 
-Enterprise Micro Frontend architecture for **Fusion Cash Management**, built with **Angular 19/22**, **Nx Monorepo**, and **Webpack Module Federation**.
+Enterprise Micro Frontend architecture for **Fusion Cash Management**, built with **Angular 22**, **Nx Monorepo**, and **Webpack Module Federation**.
 
-> 📚 **Documentation & Setup Guides**: See [**`docs/index.md`**](./docs/index.md) for full architectural design documents, branding specs (Tech Mahindra Impact Red), and step-by-step P0 module developer guides.
+> 📚 **Documentation Index**: See [**`docs/index.md`**](./docs/index.md) for architectural design documents, setup guides, and module specifications.
 
 ---
 
