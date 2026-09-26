@@ -49,3 +49,37 @@ export function brandConfigToCssTokens(config: BrandConfig): Record<string, stri
     '--fc-font-family-heading':       config.typography.fontFamilyHeading,
   };
 }
+
+/**
+ * Tenant Theme configuration interface matching backend CRUD REST API.
+ */
+export interface TenantThemeConfig {
+  tenantId: string;
+  tenantName: string;
+  primaryColor: string;
+  secondaryColor: string;
+  fontFamily?: string;
+  borderRadius?: string;
+}
+
+/**
+ * Maps TenantThemeConfig to CSS custom properties on :root (including Material 3 system variables).
+ */
+export function tenantThemeToCssTokens(tenant: TenantThemeConfig): Record<string, string> {
+  const tokens: Record<string, string> = {
+    '--mat-sys-primary':              tenant.primaryColor,
+    '--fc-color-primary':             tenant.primaryColor,
+    '--mat-sys-secondary':            tenant.secondaryColor,
+    '--fc-color-secondary':           tenant.secondaryColor,
+  };
+
+  if (tenant.fontFamily) {
+    tokens['--fc-font-family'] = tenant.fontFamily;
+  }
+
+  if (tenant.borderRadius) {
+    tokens['--fc-radius-md'] = tenant.borderRadius;
+  }
+
+  return tokens;
+}

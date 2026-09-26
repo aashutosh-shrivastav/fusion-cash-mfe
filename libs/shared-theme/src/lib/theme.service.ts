@@ -1,23 +1,14 @@
 // libs/shared-theme/src/lib/theme.service.ts
 
-import { Injectable, Inject, signal, computed } from '@angular/core';
+import { Injectable, Inject, signal, computed, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { TenantThemeConfig, tenantThemeToCssTokens } from './theme.models';
 
-/**
- * ThemeService manages runtime theme switching and brand token injection.
- *
- * Usage:
- *   - Inject in Shell's root component
- *   - Call toggleTheme() for light/dark switch
- *   - Call applyBrandTokens() with a brand config for white-labeling
- *
- * Architecture Note:
- *   Shell owns the ThemeService instance. MFEs don't need to inject it
- *   because CSS custom properties cascade through the DOM automatically.
- *   MFEs only need this service if they want to READ the current theme.
- */
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
+  private http = inject(HttpClient);
 
   /** Current theme mode signal */
   private _themeMode = signal<'light' | 'dark'>('light');
@@ -28,12 +19,25 @@ export class ThemeService {
   /** Computed convenience flag */
   readonly isDark = computed(() => this._themeMode() === 'dark');
 
+  /** Active tenant theme signal */
+  private _activeTenant = signal<TenantThemeConfig | null>(null);
+  readonly activeTenant = this._activeTenant.asReadonly();
+
+  /** All available tenant theme profiles signal */
+  private _availableTenants = signal<TenantThemeConfig[]>([]);
+  readonly availableTenants = this._availableTenants.asReadonly();
+
+  private apiBaseUrl = 'http://localhost:4000/api/tenant';
+
   constructor(@Inject(DOCUMENT) private document: Document) {
     // Restore persisted preference
-    const saved = localStorage.getItem('fc-theme-mode');
-    if (saved === 'dark') {
+    const savedMode = localStorage.getItem('fc-theme-mode');
+    if (savedMode === 'dark') {
       this.setTheme('dark');
     }
+
+    // Auto-load initial tenant themes
+    this.fetchTenants();
   }
 
   /**
@@ -85,5 +89,76 @@ export class ThemeService {
     for (const property of tokenNames) {
       root.style.removeProperty(property);
     }
+  }
+
+  // ── Tenant Theme API Operations (CRUD) ──────────────────────
+
+  /**
+   * Fetch all registered tenant themes from backend.
+   */
+  async fetchTenants(): Promise<TenantThemeConfig[]> {
+    try {
+      const tenants = await firstValueFrom(this.http.get<TenantThemeConfig[]>(`${this.apiBaseUrl}/themes`));
+      this._availableTenants.set(tenants);
+
+      // Auto-restore saved tenant or default
+      const savedTenantId = localStorage.getItem('fc-tenant-id') || 'tech-mahindra';
+      if (tenants.some(t => t.tenantId === savedTenantId)) {
+        this.selectTenant(savedTenantId);
+      } else if (tenants.length > 0) {
+        this.selectTenant(tenants[0].tenantId);
+      }
+      return tenants;
+    } catch (err) {
+      console.warn('Could not fetch tenant themes from API, using default SCSS theme', err);
+      return [];
+    }
+  }
+
+  /**
+   * Select and apply a tenant theme by ID.
+   */
+  async selectTenant(tenantId: string): Promise<void> {
+    try {
+      const tenant = await firstValueFrom(this.http.get<TenantThemeConfig>(`${this.apiBaseUrl}/theme/${tenantId}`));
+      this._activeTenant.set(tenant);
+      this.applyTenantTheme(tenant);
+      localStorage.setItem('fc-tenant-id', tenantId);
+    } catch (err) {
+      console.error(`Failed to load tenant theme for ${tenantId}`, err);
+    }
+  }
+
+  /**
+   * Apply tenant theme configuration to document :root.
+   */
+  applyTenantTheme(tenant: TenantThemeConfig): void {
+    const tokens = tenantThemeToCssTokens(tenant);
+    this.applyBrandTokens(tokens);
+  }
+
+  /**
+   * Save / Update existing tenant theme configuration to backend (PUT).
+   */
+  async updateTenantTheme(tenant: TenantThemeConfig): Promise<TenantThemeConfig> {
+    const updated = await firstValueFrom(
+      this.http.put<TenantThemeConfig>(`${this.apiBaseUrl}/theme/${tenant.tenantId}`, tenant)
+    );
+    this._activeTenant.set(updated);
+    this.applyTenantTheme(updated);
+    await this.fetchTenants();
+    return updated;
+  }
+
+  /**
+   * Create a new tenant theme profile on backend (POST).
+   */
+  async createTenantTheme(tenant: TenantThemeConfig): Promise<TenantThemeConfig> {
+    const created = await firstValueFrom(
+      this.http.post<TenantThemeConfig>(`${this.apiBaseUrl}/theme`, tenant)
+    );
+    await this.fetchTenants();
+    await this.selectTenant(created.tenantId);
+    return created;
   }
 }

@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { ThemeManagerComponent } from './theme-manager.component';
+
 @Component({
   selector: 'fc-home',
   standalone: true,
@@ -19,10 +21,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ThemeManagerComponent
   ],
   template: `
     <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+      
+      <!-- Runtime Tenant Theme Manager -->
+      <fc-theme-manager></fc-theme-manager>
       
       <!-- Primary Card -->
       <mat-card>
