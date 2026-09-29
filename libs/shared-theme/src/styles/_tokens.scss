@@ -9,6 +9,37 @@
 // ============================================================
 
 :root {
+  // ──────────────────────────────────────────────────────────
+  // Centralized Design Palette (Color System)
+  // Standardized neutral, surface, dark, and brand palette tokens
+  // ──────────────────────────────────────────────────────────
+  --fc-palette-white:                     #ffffff;
+  --fc-palette-black:                     #000000;
+
+  // Neutrals (Grayscale Palette)
+  --fc-palette-gray-50:                  #fafafa;
+  --fc-palette-gray-100:                 #f5f5f5;
+  --fc-palette-gray-200:                 #eeeeee;
+  --fc-palette-gray-300:                 #e0e0e0;
+  --fc-palette-gray-400:                 #bdbdbd;
+  --fc-palette-gray-500:                 #9e9e9e;
+  --fc-palette-gray-600:                 #757575;
+  --fc-palette-gray-700:                 #616161;
+  --fc-palette-gray-800:                 #424242;
+  --fc-palette-gray-900:                 #212121;
+  --fc-palette-gray-950:                 #121212;
+
+  // Dark Theme Palette Tokens
+  --fc-palette-dark-surface:             #1a1a1a;
+  --fc-palette-dark-container:           #242424;
+  --fc-palette-dark-elevated:            #2c2c2c;
+  --fc-palette-dark-border:              rgba(255, 255, 255, 0.12);
+  --fc-palette-light-border:             rgba(0, 0, 0, 0.12);
+
+  // Default Brand Accent Palette
+  --fc-palette-techm-red:                #5F0229;
+  --fc-palette-techm-dark:               #0A0838;
+
   // ── Angular Material M3 System Variables ───────────────────
   --mat-sys-primary:                      #{brand.$primary};
   --mat-sys-on-primary:                   #{brand.$on-primary};
@@ -28,7 +59,7 @@
   --mat-sys-surface-dim:                  #{brand.$surface-dim};
   --mat-sys-surface-container:            #{brand.$surface-container};
   --mat-sys-surface-container-low:        #{brand.$surface-container};
-  --mat-sys-surface-container-lowest:     #ffffff;
+  --mat-sys-surface-container-lowest:     var(--fc-palette-white);
   --mat-sys-surface-container-high:       #{brand.$surface-dim};
   --mat-sys-surface-container-highest:    #{brand.$surface-dim};
 
@@ -63,6 +94,17 @@
   --fc-color-on-surface-variant:  var(--mat-sys-on-surface-variant);
   --fc-color-outline:             var(--mat-sys-outline);
   --fc-color-outline-variant:     var(--mat-sys-outline-variant);
+
+  // ── Component Externalized Branding Tokens ────────────────────
+  --fc-sidebar-bg:                var(--fc-palette-white);
+  --fc-sidebar-text-color:        var(--fc-palette-gray-900);
+  --fc-sidebar-border-color:      var(--fc-palette-light-border);
+
+  --fc-topbar-bg:                 var(--fc-palette-techm-dark);
+  --fc-topbar-text-color:         var(--fc-palette-white);
+
+  --fc-footer-bg:                 var(--fc-palette-gray-100);
+  --fc-footer-text-color:        var(--fc-palette-gray-700);
 
   // ── Typography Tokens ─────────────────────────────────────
   --fc-font-family-base:      #{brand.$font-family-base};
@@ -111,4 +153,22 @@
   --fc-transition-fast:     150ms ease;
   --fc-transition-normal:   250ms ease;
   --fc-transition-slow:     350ms ease;
+}
+
+.dark-theme {
+  --fc-color-surface:             var(--fc-palette-dark-surface);
+  --fc-color-surface-dim:         var(--fc-palette-dark-elevated);
+  --fc-color-surface-container:   var(--fc-palette-dark-container);
+  --fc-color-on-surface:          var(--fc-palette-white);
+  --fc-color-on-surface-variant:  var(--fc-palette-gray-400);
+
+  --fc-sidebar-bg:                var(--fc-palette-dark-surface);
+  --fc-sidebar-text-color:        var(--fc-palette-white);
+  --fc-sidebar-border-color:      var(--fc-palette-dark-border);
+
+  --fc-topbar-bg:                 var(--fc-palette-dark-container);
+  --fc-topbar-text-color:         var(--fc-palette-white);
+
+  --fc-footer-bg:                 var(--fc-palette-dark-container);
+  --fc-footer-text-color:        var(--fc-palette-gray-400);
 }

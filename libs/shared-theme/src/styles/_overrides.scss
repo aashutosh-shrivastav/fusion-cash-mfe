@@ -14,7 +14,32 @@
     filled-container-color: var(--fc-color-primary),
     filled-label-text-color: var(--fc-color-on-primary),
     filled-container-shape: var(--fc-radius-md),
+    outlined-container-shape: var(--fc-radius-md),
   ));
+
+  // Direct MDC / Material 3 CSS property overrides for full runtime theme switching & shape
+  --mdc-filled-button-container-color: var(--fc-color-primary);
+  --mat-filled-button-container-color: var(--fc-color-primary);
+  --mdc-filled-button-label-text-color: var(--fc-color-on-primary);
+  --mat-filled-button-label-text-color: var(--fc-color-on-primary);
+
+  --mdc-filled-button-container-shape: var(--fc-radius-md);
+  --mat-filled-button-container-shape: var(--fc-radius-md);
+  --_mat-button-filled-container-shape: var(--fc-radius-md);
+
+  --mdc-outlined-button-container-shape: var(--fc-radius-md);
+  --mat-outlined-button-container-shape: var(--fc-radius-md);
+  --_mat-button-outlined-container-shape: var(--fc-radius-md);
+
+  --mdc-outlined-button-label-text-color: var(--fc-color-primary);
+  --mat-outlined-button-label-text-color: var(--fc-color-primary);
+  --mdc-outlined-button-outline-color: var(--fc-color-primary);
+  --mat-outlined-button-outline-color: var(--fc-color-primary);
+
+  --mat-option-selected-state-label-text-color: var(--fc-color-primary);
+  --mdc-outlined-text-field-focus-label-text-color: var(--fc-color-primary);
+  --mdc-outlined-text-field-focus-outline-color: var(--fc-color-primary);
+  --mat-form-field-focus-select-arrow-color: var(--fc-color-primary);
 
   // ── Cards ───────────────────────────────────────────────
   @include mat.card-overrides((
@@ -42,6 +67,90 @@
   ));
 }
 
+// Global button border radius override
+.mat-mdc-button-base,
+.mat-mdc-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-filled-button {
+  border-radius: var(--fc-radius-md, 8px) !important;
+
+  .mdc-button__ripple {
+    border-radius: var(--fc-radius-md, 8px) !important;
+  }
+}
+
+// Global card & component surface container rules
+mat-card,
+.mat-mdc-card {
+  background-color: var(--fc-color-surface-container) !important;
+  color: var(--fc-color-on-surface) !important;
+  border: 1px solid var(--fc-sidebar-border-color);
+  border-radius: var(--fc-radius-md, 8px);
+}
+
+// Card actions button spacing and container padding
+mat-card-actions,
+.mat-mdc-card-actions {
+  display: flex !important;
+  gap: var(--fc-spacing-sm, 12px) !important;
+  padding: var(--fc-spacing-md, 16px) !important;
+  align-items: center;
+
+  button {
+    margin: 0 !important;
+  }
+}
+
+// Remove rounded selection visuals on menu items / list items
+.mat-mdc-list-item {
+  border-radius: 0 !important;
+}
+
+// Form field focused label & outline styling
+.mat-mdc-form-field.mat-focused {
+  .mdc-floating-label,
+  .mat-mdc-floating-label {
+    color: var(--fc-color-primary) !important;
+  }
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--fc-color-primary) !important;
+    border-width: 2px !important;
+  }
+}
+
+// Global button & icon rules to guarantee runtime brand color inheritance
+button.mat-mdc-unelevated-button.mat-primary,
+button.mat-mdc-raised-button.mat-primary,
+button.mat-mdc-filled-button.mat-primary,
+button.mat-mdc-fab.mat-primary,
+button.mat-mdc-mini-fab.mat-primary {
+  background-color: var(--fc-color-primary) !important;
+  color: var(--fc-color-on-primary) !important;
+
+  .mat-icon,
+  mat-icon {
+    color: var(--fc-color-on-primary) !important;
+  }
+}
+
+button.mat-mdc-outlined-button.mat-primary {
+  color: var(--fc-color-primary) !important;
+  border-color: var(--fc-color-primary) !important;
+
+  .mat-icon,
+  mat-icon {
+    color: var(--fc-color-primary) !important;
+  }
+}
+
+mat-icon.mat-primary {
+  color: var(--fc-color-primary);
+}
+
 // ── CDK Overlay Global Rules (Selects, Datepickers, Menus, Dialogs) ──
 // CDK overlay containers are appended to document <body> at root level.
 // We enforce opaque surface background, border-radius, and shadow on all overlays.
@@ -51,7 +160,8 @@
   .mat-datepicker-content,
   .mat-mdc-autocomplete-panel,
   .mat-mdc-menu-panel,
-  .mat-mdc-dialog-container .mdc-dialog__surface {
+  .mat-mdc-dialog-container .mdc-dialog__surface,
+  .mdc-menu-surface {
     background-color: var(--fc-color-surface-container, #ffffff) !important;
     color: var(--fc-color-on-surface, #212121) !important;
     box-shadow: var(--fc-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.18)) !important;
@@ -68,18 +178,26 @@
 
   // Select options hover and selection states
   .mat-mdc-option {
+    background-color: var(--fc-color-surface-container, #ffffff) !important;
     color: var(--fc-color-on-surface, #212121) !important;
-    background-color: transparent;
+
+    .mdc-list-item__primary-text {
+      color: var(--fc-color-on-surface, #212121) !important;
+    }
 
     &:hover,
-    &.mdc-list-item--selected,
     &.mat-mdc-option-active {
-      background-color: color-mix(in srgb, var(--fc-color-primary, #E31837) 10%, transparent) !important;
+      background-color: color-mix(in srgb, var(--fc-color-primary) 10%, var(--fc-color-surface-container, #ffffff)) !important;
     }
-  }
 
-  // Active/selected option text color
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
-    color: var(--fc-color-primary, #E31837) !important;
+    &.mdc-list-item--selected,
+    &.mat-selected {
+      background-color: color-mix(in srgb, var(--fc-color-primary) 16%, var(--fc-color-surface-container, #ffffff)) !important;
+
+      .mdc-list-item__primary-text {
+        color: var(--fc-color-primary) !important;
+        font-weight: 600;
+      }
+    }
   }
 }

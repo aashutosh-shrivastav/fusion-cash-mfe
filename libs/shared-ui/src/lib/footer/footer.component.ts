@@ -13,10 +13,10 @@ import { CommonModule } from '@angular/common';
   styles: [`
     .fc-footer {
       padding: var(--fc-spacing-sm, 8px) var(--fc-spacing-xl, 32px);
-      background-color: var(--fc-color-surface-container, #f5f5f5);
-      border-top: 1px solid var(--fc-color-outline-variant, rgba(0, 0, 0, 0.12));
+      background-color: var(--fc-footer-bg, var(--fc-color-surface-container, #f5f5f5)) !important;
+      border-top: 1px solid var(--fc-sidebar-border-color, rgba(0, 0, 0, 0.12));
       font-size: var(--fc-font-size-xs, 12px);
-      color: var(--fc-color-on-surface-variant, #616161);
+      color: var(--fc-footer-text-color, var(--fc-color-on-surface-variant, #616161)) !important;
       text-align: center;
       flex-shrink: 0;
     }

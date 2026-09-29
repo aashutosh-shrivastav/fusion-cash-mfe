@@ -25,12 +25,11 @@ export class App implements OnInit, OnDestroy {
   protected title = 'Fusion Portal';
   private themeService = inject(ThemeService);
 
-  /** Dynamic theme-aware logo URL (light vs dark) */
-  logoUrl = computed(() =>
-    this.themeService.isDark()
-      ? 'assets/images/logo/dark/logo.png'
-      : 'assets/images/logo/light/logo.png'
-  );
+  /** Dynamic topbar logo URL from ThemeService */
+  logoUrl = this.themeService.activeLogoUrl;
+
+  /** Dynamic sidebar drawer logo URL from ThemeService */
+  sidebarLogoUrl = this.themeService.activeSidebarLogoUrl;
 
   /** Overlay sidebar open state (starts closed by default) */
   sidebarOpen = signal(false);

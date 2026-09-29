@@ -27,11 +27,30 @@ export class ThemeService {
   private _availableTenants = signal<TenantThemeConfig[]>([]);
   readonly availableTenants = this._availableTenants.asReadonly();
 
+  /** Dynamic topbar logo URL (always uses darkUrl/white logo for high contrast on dark primary topbar) */
+  readonly activeLogoUrl = computed(() => {
+    const tenant = this._activeTenant();
+    return tenant?.common?.logo?.darkUrl || 'assets/images/logo/dark/logo.png';
+  });
+
+  /** Dynamic sidebar logo URL (light logo for light theme sidebar, dark logo for dark theme sidebar) */
+  readonly activeSidebarLogoUrl = computed(() => {
+    const tenant = this._activeTenant();
+    const isDark = this.isDark();
+    if (isDark) {
+      return tenant?.common?.logo?.darkUrl || 'assets/images/logo/dark/logo.png';
+    } else {
+      return tenant?.common?.logo?.lightUrl || 'assets/images/logo/light/logo.png';
+    }
+  });
+
   constructor(@Inject(DOCUMENT) private document: Document) {
     // Restore persisted preference
     const savedMode = localStorage.getItem('fc-theme-mode');
     if (savedMode === 'dark') {
       this.setTheme('dark');
+    } else {
+      this.setTheme('light');
     }
 
     // Auto-load tenant themes from static JSON asset
@@ -56,24 +75,26 @@ export class ThemeService {
     body.classList.add(`${mode}-theme`);
     this._themeMode.set(mode);
     localStorage.setItem('fc-theme-mode', mode);
+
+    // Re-apply current tenant theme tokens with updated mode
+    const current = this._activeTenant();
+    if (current) {
+      this.applyTenantTheme(current);
+    }
   }
 
   /**
-   * Apply brand tokens at runtime by injecting CSS custom properties.
-   *
-   * This is the runtime branding mechanism. Pass a partial map of
-   * token overrides and they'll be applied to :root immediately.
-   *
-   * Example:
-   *   themeService.applyBrandTokens({
-   *     '--fc-color-primary': '#e91e63',
-   *     '--fc-color-primary-container': '#fce4ec',
-   *   });
+   * Apply brand tokens at runtime by injecting CSS custom properties onto html and body elements.
+   * Applying to body guarantees inline styles override SCSS .light-theme and .dark-theme class rules on body.
    */
   applyBrandTokens(tokens: Record<string, string>): void {
     const root = this.document.documentElement;
+    const body = this.document.body;
     for (const [property, value] of Object.entries(tokens)) {
       root.style.setProperty(property, value);
+      if (body) {
+        body.style.setProperty(property, value);
+      }
     }
   }
 
@@ -82,8 +103,12 @@ export class ThemeService {
    */
   resetBrandTokens(tokenNames: string[]): void {
     const root = this.document.documentElement;
+    const body = this.document.body;
     for (const property of tokenNames) {
       root.style.removeProperty(property);
+      if (body) {
+        body.style.removeProperty(property);
+      }
     }
   }
 
@@ -91,7 +116,6 @@ export class ThemeService {
 
   /**
    * Fetch all registered tenant themes from the static JSON file in assets.
-   * In production, this will be replaced with a backend API call.
    */
   async fetchTenants(): Promise<TenantThemeConfig[]> {
     try {
@@ -117,7 +141,6 @@ export class ThemeService {
 
   /**
    * Select and apply a tenant theme by ID.
-   * Looks up the tenant from the already-loaded list (no HTTP call).
    */
   selectTenant(tenantId: string): void {
     const tenants = this._availableTenants();
@@ -135,35 +158,7 @@ export class ThemeService {
    * Apply tenant theme configuration to document :root.
    */
   applyTenantTheme(tenant: TenantThemeConfig): void {
-    const tokens = tenantThemeToCssTokens(tenant);
+    const tokens = tenantThemeToCssTokens(tenant, this.isDark());
     this.applyBrandTokens(tokens);
   }
-
-  // ── CRUD API Operations (commented out for demo) ─────────────
-  // These will be re-enabled when the backend API is integrated.
-  //
-  // /**
-  //  * Save / Update existing tenant theme configuration to backend (PUT).
-  //  */
-  // async updateTenantTheme(tenant: TenantThemeConfig): Promise<TenantThemeConfig> {
-  //   const updated = await firstValueFrom(
-  //     this.http.put<TenantThemeConfig>(`${this.apiBaseUrl}/theme/${tenant.tenantId}`, tenant)
-  //   );
-  //   this._activeTenant.set(updated);
-  //   this.applyTenantTheme(updated);
-  //   await this.fetchTenants();
-  //   return updated;
-  // }
-  //
-  // /**
-  //  * Create a new tenant theme profile on backend (POST).
-  //  */
-  // async createTenantTheme(tenant: TenantThemeConfig): Promise<TenantThemeConfig> {
-  //   const created = await firstValueFrom(
-  //     this.http.post<TenantThemeConfig>(`${this.apiBaseUrl}/theme`, tenant)
-  //   );
-  //   await this.fetchTenants();
-  //   await this.selectTenant(created.tenantId);
-  //   return created;
-  // }
 }

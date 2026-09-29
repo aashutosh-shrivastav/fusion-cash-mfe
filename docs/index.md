@@ -21,6 +21,9 @@ Welcome to the central documentation index for the Fusion Cash Management Micro 
 - [**04 - Theme Architecture Design**](./04-theme-architecture-design.md)  
   In-depth design of the current theme system — SCSS layers, runtime ThemeService, CSS token mapping, MFE inheritance, backend CRUD API, and extensibility guide.
 
+- [**05 - Branding Strategy & Runtime Architecture**](./05-branding-strategy-and-runtime-architecture.md)  
+  Hierarchical component-segregated tenant JSON schema, dark mode surface tokens, TypeScript models, and MFE developer coding guidelines.
+
 ---
 
 ## 🛠️ P0 Manual Developer Setup Guides

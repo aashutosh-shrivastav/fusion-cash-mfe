@@ -7,10 +7,11 @@
 The goal of `libs/shared-theme` is to provide a central, runtime-configurable branding system for the entire Micro Frontend workspace (Shell + Remotes).
 
 ### Core Features
-- **Primary Brand Color:** Tech Mahindra Impact Red (`#E31837`)
-- **Secondary Brand Color:** Steel Grey (`#58595B`)
-- **Angular Material 3 Integration:** Standard Material components (`mat-button`, `mat-card`, `mat-form-field`, `mat-datepicker`, etc.) automatically reflect the brand colors and typography.
-- **Runtime White-Labeling:** CSS Custom Properties (`--mat-sys-primary`, `--fc-font-family`, etc.) are swapped on `:root` at runtime via `ThemeService` without requiring a rebuild.
+- **Primary Brand Color:** Tech Mahindra Burgundy (`#5F0229`)
+- **Secondary Brand Color:** Midnight Blue (`#0A0838`)
+- **Angular Material 3 Integration:** Standard Material components (`mat-button`, `mat-card`, `mat-form-field`, `mat-datepicker`, `mat-select`, `mat-menu`) automatically reflect brand colors, contrast guidelines, and typography.
+- **Hierarchical Tenant Theme Configuration:** Component-level segregation (`common`, `topbar`, `sidebar`, `footer`) with dark-mode override blocks, customizable topbar icon colors, profile avatar gradients, and surface container overrides.
+- **Runtime White-Labeling:** CSS Custom Properties (`--mat-sys-primary`, `--fc-font-family-base`, `--fc-topbar-bg`, `--fc-color-surface-container`, etc.) are injected on `:root` and `document.body` at runtime via `ThemeService` without requiring a rebuild.
 - **Configurable TTF Font Loading:** Support loading custom local font files (`.ttf` placed in `assets/fonts/`) configured dynamically.
 
 ---

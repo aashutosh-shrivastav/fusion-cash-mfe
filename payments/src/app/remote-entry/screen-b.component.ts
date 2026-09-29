@@ -60,6 +60,21 @@ import { MatChipsModule } from '@angular/material/chips';
       max-width: 720px;
     }
 
+    mat-card {
+      background-color: var(--fc-color-surface-container) !important;
+      color: var(--fc-color-on-surface) !important;
+      border: 1px solid var(--fc-sidebar-border-color);
+      border-radius: var(--fc-radius-md, 8px);
+    }
+
+    mat-card-title {
+      color: var(--fc-color-on-surface) !important;
+    }
+
+    mat-card-subtitle {
+      color: var(--fc-color-on-surface-variant) !important;
+    }
+
     .txn-list {
       display: flex;
       flex-direction: column;
@@ -76,7 +91,7 @@ import { MatChipsModule } from '@angular/material/chips';
     }
 
     .txn-row:hover {
-      background: var(--fc-color-surface-dim, #f5f5f5);
+      background: var(--fc-color-surface-dim);
     }
 
     .txn-info {
@@ -92,25 +107,25 @@ import { MatChipsModule } from '@angular/material/chips';
 
     .txn-desc {
       font-weight: var(--fc-font-weight-medium, 500);
-      color: var(--fc-color-on-surface, #212121);
+      color: var(--fc-color-on-surface);
     }
 
     .txn-date {
       font-size: var(--fc-font-size-xs, 12px);
-      color: var(--fc-color-on-surface-variant, #616161);
+      color: var(--fc-color-on-surface-variant);
     }
 
     .txn-amount {
       font-weight: var(--fc-font-weight-semibold, 600);
-      font-family: var(--fc-font-family-base, 'Inter', sans-serif);
+      font-family: var(--fc-font-family-base, sans-serif);
     }
 
     .txn-amount.credit {
-      color: var(--fc-color-primary, #E31837);
+      color: var(--fc-color-primary);
     }
 
     .txn-amount.debit {
-      color: var(--fc-color-error, #d32f2f);
+      color: var(--fc-color-error);
     }
 
     .txn-icon {

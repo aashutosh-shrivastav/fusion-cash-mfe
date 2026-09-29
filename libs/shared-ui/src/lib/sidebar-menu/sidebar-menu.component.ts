@@ -102,12 +102,28 @@ export interface MenuItem {
       flex-direction: column;
       overflow-y: auto;
       overflow-x: hidden;
-      transition: width var(--fc-transition-normal, 250ms ease);
+      background-color: var(--fc-sidebar-bg);
+      color: var(--fc-sidebar-text-color);
+      transition: width var(--fc-transition-normal, 250ms ease),
+                  background-color var(--fc-transition-normal, 250ms ease),
+                  color var(--fc-transition-normal, 250ms ease);
+    }
+
+    /* Force Angular Material Nav Item text & icon to inherit sidebar text color */
+    .sidebar-nav a.mat-mdc-list-item {
+      color: var(--fc-sidebar-text-color);
+      border-radius: 0 !important;
+
+      .mat-icon,
+      .mdc-list-item__primary-text,
+      span[matListItemTitle] {
+        color: var(--fc-sidebar-text-color);
+      }
     }
 
     .sidebar-brand {
       padding: var(--fc-spacing-md, 16px) var(--fc-spacing-md, 16px) var(--fc-spacing-sm, 8px);
-      border-bottom: 2px solid var(--fc-color-primary, #E31837);
+      border-bottom: 2px solid var(--fc-color-primary);
       margin-bottom: var(--fc-spacing-sm, 8px);
     }
 
@@ -118,10 +134,10 @@ export interface MenuItem {
     }
 
     .brand-text {
-      font-family: var(--fc-font-family-heading, 'Inter', sans-serif);
+      font-family: var(--fc-font-family-heading, sans-serif);
       font-size: var(--fc-font-size-lg, 18px);
       font-weight: var(--fc-font-weight-bold, 700);
-      color: var(--fc-color-primary, #E31837);
+      color: var(--fc-color-primary);
     }
 
     .menu-parent {
@@ -145,6 +161,7 @@ export interface MenuItem {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      color: var(--fc-sidebar-text-color) !important;
     }
 
     .expand-icon.expanded {
@@ -159,10 +176,16 @@ export interface MenuItem {
       font-size: var(--fc-font-size-sm, 14px);
     }
 
-    .active-link {
-      background-color: color-mix(in srgb, var(--fc-color-primary, #E31837) 12%, transparent) !important;
-      color: var(--fc-color-primary, #E31837) !important;
-      border-right: 3px solid var(--fc-color-primary, #E31837);
+    .sidebar-nav a.mat-mdc-list-item.active-link {
+      background-color: color-mix(in srgb, var(--fc-color-primary) 14%, transparent) !important;
+      color: var(--fc-color-primary) !important;
+      border-right: 3px solid var(--fc-color-primary);
+
+      .mat-icon,
+      .mdc-list-item__primary-text,
+      span[matListItemTitle] {
+        color: var(--fc-color-primary) !important;
+      }
     }
 
     .collapsed .brand-text,

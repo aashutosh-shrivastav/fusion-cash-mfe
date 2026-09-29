@@ -287,13 +287,13 @@ applyBrandTokens()                 ← document.documentElement.style.setPropert
 ### 6.2 TenantThemeConfig Schema
 
 ```typescript
-interface TenantThemeConfig {
+export interface TenantThemeConfig {
   tenantId: string;        // Unique key, e.g. "tech-mahindra"
   tenantName: string;      // Display name, e.g. "Tech Mahindra (Default)"
-  primaryColor: string;    // Hex, e.g. "#E31837"
-  secondaryColor: string;  // Hex, e.g. "#4D4D4F"
-  fontFamily?: string;     // CSS font stack, e.g. "Inter, Roboto, sans-serif"
-  borderRadius?: string;   // CSS value, e.g. "8px"
+  common: CommonThemeConfig;
+  sidebar?: SidebarThemeConfig;
+  topbar?: TopbarThemeConfig;
+  footer?: FooterThemeConfig;
 }
 ```
 

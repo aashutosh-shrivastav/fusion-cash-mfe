@@ -58,6 +58,21 @@ import { MatButtonModule } from '@angular/material/button';
       max-width: 720px;
     }
 
+    mat-card {
+      background-color: var(--fc-color-surface-container) !important;
+      color: var(--fc-color-on-surface) !important;
+      border: 1px solid var(--fc-sidebar-border-color);
+      border-radius: var(--fc-radius-md, 8px);
+    }
+
+    mat-card-title {
+      color: var(--fc-color-on-surface) !important;
+    }
+
+    mat-card-subtitle {
+      color: var(--fc-color-on-surface-variant) !important;
+    }
+
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -67,7 +82,8 @@ import { MatButtonModule } from '@angular/material/button';
     .info-card {
       padding: var(--fc-spacing-md, 16px);
       border-radius: var(--fc-radius-md, 8px);
-      background: var(--fc-color-surface-dim, #f5f5f5);
+      background: var(--fc-color-surface-dim);
+      border: 1px solid var(--fc-sidebar-border-color);
       display: flex;
       flex-direction: column;
       gap: var(--fc-spacing-xs, 4px);
@@ -76,7 +92,7 @@ import { MatButtonModule } from '@angular/material/button';
     .info-label {
       font-size: var(--fc-font-size-xs, 12px);
       font-weight: var(--fc-font-weight-medium, 500);
-      color: var(--fc-color-on-surface-variant, #616161);
+      color: var(--fc-color-on-surface-variant);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
@@ -84,21 +100,21 @@ import { MatButtonModule } from '@angular/material/button';
     .info-value {
       font-size: var(--fc-font-size-xl, 20px);
       font-weight: var(--fc-font-weight-semibold, 600);
-      color: var(--fc-color-on-surface, #212121);
-      font-family: var(--fc-font-family-base, 'Inter', sans-serif);
+      color: var(--fc-color-on-surface);
+      font-family: var(--fc-font-family-base, sans-serif);
     }
 
     .info-value.primary {
-      color: var(--fc-color-primary, #E31837);
+      color: var(--fc-color-primary);
     }
 
     .info-value.warn {
-      color: var(--fc-color-error, #d32f2f);
+      color: var(--fc-color-error);
     }
 
     .info-value.muted {
       font-size: var(--fc-font-size-sm, 14px);
-      color: var(--fc-color-on-surface-variant, #616161);
+      color: var(--fc-color-on-surface-variant);
     }
   `]
 })

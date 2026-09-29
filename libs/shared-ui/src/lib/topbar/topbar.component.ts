@@ -71,6 +71,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       display: flex;
       align-items: center;
       padding: 0 var(--fc-spacing-md, 16px);
+      background-color: var(--fc-topbar-bg, var(--fc-color-primary)) !important;
+      color: var(--fc-topbar-text-color, var(--fc-color-on-primary)) !important;
+
+      button.mat-mdc-icon-button {
+        color: var(--fc-topbar-icon-color, var(--fc-topbar-text-color, inherit)) !important;
+
+        .mat-icon {
+          color: var(--fc-topbar-icon-color, var(--fc-topbar-text-color, inherit)) !important;
+        }
+      }
     }
 
     .topbar-brand {
@@ -89,10 +99,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     }
 
     .topbar-title {
-      font-family: var(--fc-font-family-heading, 'Inter', sans-serif);
+      font-family: var(--fc-font-family-heading, sans-serif);
       font-weight: var(--fc-font-weight-semibold, 600);
       font-size: var(--fc-font-size-lg, 18px);
       white-space: nowrap;
+      color: inherit;
     }
 
     .topbar-spacer {
@@ -118,12 +129,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       white-space: nowrap;
       letter-spacing: 0.5px;
       box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      color: inherit;
 
       .clock-icon {
         font-size: 15px;
         width: 15px;
         height: 15px;
         opacity: 0.9;
+        color: inherit;
       }
     }
 
@@ -134,8 +147,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, var(--fc-color-primary, #E31837) 0%, var(--fc-color-secondary, #4D4D4F) 100%);
-      color: #ffffff;
+      background: linear-gradient(
+        180deg,
+        var(--fc-topbar-avatar-start, var(--fc-color-primary)) 0%,
+        var(--fc-topbar-avatar-end, var(--fc-color-secondary)) 100%
+      );
+      color: var(--fc-topbar-avatar-text-color, #ffffff);
       box-shadow: var(--fc-shadow-sm, 0 2px 4px rgba(0, 0, 0, 0.15));
       border: 2px solid rgba(255, 255, 255, 0.35);
       cursor: pointer;
@@ -149,6 +166,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         font-size: 22px;
         width: 22px;
         height: 22px;
+        color: var(--fc-topbar-avatar-text-color, #ffffff) !important;
       }
     }
   `]

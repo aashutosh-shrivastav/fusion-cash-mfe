@@ -56,35 +56,42 @@ import { ThemeService, TenantThemeConfig } from '@fusion-cash-mfe/shared-theme';
 
         <!-- Active Theme Info -->
         <div *ngIf="themeService.activeTenant() as current" 
-             style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 8px; background: rgba(0,0,0,0.04);">
+             style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 8px; background: var(--fc-color-surface-dim); border: 1px solid var(--fc-sidebar-border-color);">
           <div style="display: flex; gap: 8px; align-items: center;">
-            <div [style.background]="current.primaryColor" 
-                 style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.12);"></div>
-            <span style="font-size: 13px; font-weight: 500;">Primary</span>
+            <div [style.background]="current.common.primaryColor" 
+                 style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--fc-sidebar-border-color);"></div>
+            <span style="font-size: 13px; font-weight: 500; color: var(--fc-color-on-surface);">Primary</span>
           </div>
           <div style="display: flex; gap: 8px; align-items: center;">
-            <div [style.background]="current.secondaryColor" 
-                 style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.12);"></div>
-            <span style="font-size: 13px; font-weight: 500;">Secondary</span>
+            <div [style.background]="current.common.secondaryColor" 
+                 style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--fc-sidebar-border-color);"></div>
+            <span style="font-size: 13px; font-weight: 500; color: var(--fc-color-on-surface);">Secondary</span>
           </div>
-          <span style="font-size: 12px; color: rgba(0,0,0,0.5); margin-left: auto;">
-            {{ current.fontFamily }} · {{ current.borderRadius }}
+          <span style="font-size: 12px; color: var(--fc-color-on-surface-variant); margin-left: auto;">
+            {{ current.common.fontFamily }} · {{ current.common.borderRadius }}
           </span>
         </div>
 
       </mat-card-content>
     </mat-card>
+  `,
+  styles: [`
+    .theme-manager-card {
+      max-width: 720px;
+      background-color: var(--fc-color-surface-container) !important;
+      color: var(--fc-color-on-surface) !important;
+      border: 1px solid var(--fc-sidebar-border-color);
+      border-radius: var(--fc-radius-md, 8px);
+    }
 
-    <!-- ════════════════════════════════════════════════════════════
-         CRUD panels (commented out for demo — re-enable when 
-         backend API is integrated)
-         
-         Features when enabled:
-         - Live Theme Editor (color pickers, font, border-radius)
-         - Save to Backend (PUT)
-         - Create New Tenant Profile (POST)
-         ════════════════════════════════════════════════════════════ -->
-  `
+    mat-card-title {
+      color: var(--fc-color-on-surface) !important;
+    }
+
+    mat-card-subtitle {
+      color: var(--fc-color-on-surface-variant) !important;
+    }
+  `]
 })
 export class ThemeManagerComponent {
   themeService = inject(ThemeService);

@@ -2,25 +2,178 @@
   {
     "tenantId": "tech-mahindra",
     "tenantName": "Tech Mahindra (Default)",
-    "primaryColor": "#E31837",
-    "secondaryColor": "#4D4D4F",
-    "fontFamily": "AppCustomFont, Roboto, sans-serif",
-    "borderRadius": "8px"
+    "common": {
+      "primaryColor": "#5F0229",
+      "secondaryColor": "#0A0838",
+      "fontFamily": "AppCustomFont, Roboto, sans-serif",
+      "borderRadius": "8px",
+      "logo": {
+        "lightUrl": "assets/images/logo/light/logo.png",
+        "darkUrl": "assets/images/logo/dark/logo.png"
+      },
+      "surfaceColor": "#FAFAFA",
+      "surfaceContainerColor": "#FFFFFF",
+      "dark": {
+        "primaryColor": "#9C2653",
+        "secondaryColor": "#1A1768",
+        "surfaceColor": "#121212",
+        "surfaceContainerColor": "#1E1E1E",
+        "surfaceDimColor": "#282828",
+        "onSurfaceColor": "#FFFFFF",
+        "onSurfaceVariantColor": "#BDBDBD"
+      }
+    },
+    "sidebar": {
+      "backgroundColor": "#FFFFFF",
+      "textColor": "#212121",
+      "borderColor": "#E0E0E0",
+      "dark": {
+        "backgroundColor": "#1A1A1A",
+        "textColor": "#FFFFFF",
+        "borderColor": "rgba(255, 255, 255, 0.12)"
+      }
+    },
+    "topbar": {
+      "backgroundColor": "#5F0229",
+      "textColor": "#FFFFFF",
+      "iconColor": "#FFFFFF",
+      "avatarGradientStart": "#5F0229",
+      "avatarGradientEnd": "#0A0838",
+      "avatarTextColor": "#FFFFFF",
+      "dark": {
+        "backgroundColor": "#3D011A",
+        "textColor": "#FFFFFF",
+        "iconColor": "#FFFFFF",
+        "avatarGradientStart": "#9C2653",
+        "avatarGradientEnd": "#1A1768",
+        "avatarTextColor": "#FFFFFF"
+      }
+    },
+    "footer": {
+      "backgroundColor": "#F5F5F5",
+      "textColor": "#616161",
+      "dark": {
+        "backgroundColor": "#121212",
+        "textColor": "#9E9E9E"
+      }
+    }
   },
   {
     "tenantId": "emerald-finance",
     "tenantName": "Emerald Finance",
-    "primaryColor": "#00796B",
-    "secondaryColor": "#37474F",
-    "fontFamily": "AppCustomFont, Roboto, sans-serif",
-    "borderRadius": "12px"
+    "common": {
+      "primaryColor": "#00796B",
+      "secondaryColor": "#37474F",
+      "fontFamily": "AppCustomFont, Roboto, sans-serif",
+      "borderRadius": "12px",
+      "logo": {
+        "lightUrl": "assets/images/logo/light/logo.png",
+        "darkUrl": "assets/images/logo/dark/logo.png"
+      },
+      "surfaceColor": "#F4FBF7",
+      "surfaceContainerColor": "#FFFFFF",
+      "dark": {
+        "primaryColor": "#26A69A",
+        "secondaryColor": "#455A64",
+        "surfaceColor": "#081412",
+        "surfaceContainerColor": "#0F2320",
+        "surfaceDimColor": "#16322E",
+        "onSurfaceColor": "#E0F2F1",
+        "onSurfaceVariantColor": "#80CBC4"
+      }
+    },
+    "sidebar": {
+      "backgroundColor": "#FFFFFF",
+      "textColor": "#212121",
+      "borderColor": "#E0E0E0",
+      "dark": {
+        "backgroundColor": "#0F2320",
+        "textColor": "#E0F2F1",
+        "borderColor": "rgba(224, 242, 241, 0.12)"
+      }
+    },
+    "topbar": {
+      "backgroundColor": "#00796B",
+      "textColor": "#FFFFFF",
+      "iconColor": "#FFFFFF",
+      "avatarGradientStart": "#00796B",
+      "avatarGradientEnd": "#37474F",
+      "avatarTextColor": "#FFFFFF",
+      "dark": {
+        "backgroundColor": "#004D40",
+        "textColor": "#E0F2F1",
+        "iconColor": "#E0F2F1",
+        "avatarGradientStart": "#26A69A",
+        "avatarGradientEnd": "#455A64",
+        "avatarTextColor": "#FFFFFF"
+      }
+    },
+    "footer": {
+      "backgroundColor": "#E0F2F1",
+      "textColor": "#004D40",
+      "dark": {
+        "backgroundColor": "#0A1B18",
+        "textColor": "#80CBC4"
+      }
+    }
   },
   {
     "tenantId": "oceanic-bank",
     "tenantName": "Oceanic Bank",
-    "primaryColor": "#1565C0",
-    "secondaryColor": "#263238",
-    "fontFamily": "AppCustomFont, Roboto, sans-serif",
-    "borderRadius": "4px"
+    "common": {
+      "primaryColor": "#1565C0",
+      "secondaryColor": "#263238",
+      "fontFamily": "AppCustomFont, Roboto, sans-serif",
+      "borderRadius": "4px",
+      "logo": {
+        "lightUrl": "assets/images/logo/light/logo.png",
+        "darkUrl": "assets/images/logo/dark/logo.png"
+      },
+      "surfaceColor": "#F0F4F8",
+      "surfaceContainerColor": "#FFFFFF",
+      "dark": {
+        "primaryColor": "#42A5F5",
+        "secondaryColor": "#37474F",
+        "surfaceColor": "#050C1A",
+        "surfaceContainerColor": "#0A192F",
+        "surfaceDimColor": "#112240",
+        "onSurfaceColor": "#E6F1FF",
+        "onSurfaceVariantColor": "#8892B0"
+      }
+    },
+    "sidebar": {
+      "backgroundColor": "#FFFFFF",
+      "textColor": "#212121",
+      "borderColor": "#E0E0E0",
+      "dark": {
+        "backgroundColor": "#0A192F",
+        "textColor": "#E6F1FF",
+        "borderColor": "rgba(230, 241, 255, 0.12)"
+      }
+    },
+    "topbar": {
+      "backgroundColor": "#1565C0",
+      "textColor": "#FFFFFF",
+      "iconColor": "#FFFFFF",
+      "avatarGradientStart": "#1565C0",
+      "avatarGradientEnd": "#263238",
+      "avatarTextColor": "#FFFFFF",
+      "dark": {
+        "backgroundColor": "#0D47A1",
+        "textColor": "#E6F1FF",
+        "iconColor": "#E6F1FF",
+        "avatarGradientStart": "#42A5F5",
+        "avatarGradientEnd": "#37474F",
+        "avatarTextColor": "#FFFFFF"
+      }
+    },
+    "footer": {
+      "backgroundColor": "#E3F2FD",
+      "textColor": "#0D47A1",
+      "dark": {
+        "backgroundColor": "#071120",
+        "textColor": "#90CAF9"
+      }
+    }
   }
 ]
