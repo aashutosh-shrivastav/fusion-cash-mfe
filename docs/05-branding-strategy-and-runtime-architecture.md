@@ -224,3 +224,44 @@ When building or styling components in any Micro-Frontend (Shell, Balance, Payme
 3. **Theme Mode Reactivity**:
    - Do NOT write inline styles overriding CSS custom properties at element level.
    - Calling `ThemeService.setTheme('dark')` automatically updates `--fc-color-surface`, `--fc-color-surface-container`, `--fc-color-on-surface`, and `--fc-color-on-surface-variant` on `:root`, ensuring all MFEs adapt seamlessly without app reload or rebuild.
+
+---
+
+## 6. Known Pitfalls, Error Patterns & Resolution Strategies
+
+### 1. CDK Overlay & Form Field Menu Surface Reddish Tint Bug
+- **Symptom / Error Pattern**: `mat-select` dropdown panels (`.mat-mdc-select-panel`), `mat-menu` overlays, and dropdown list items (`.mat-mdc-option`) displayed a pinkish/reddish surface container background (`#FFDAD6`) after toggling Dark Mode off or switching tenant themes.
+- **Root Cause**:
+  1. Angular Material M3 SCSS `@include mat.all-component-themes()` emits `--mat-sys-surface-container-highest`, `--mat-select-panel-background-color`, and `--mdc-menu-surface-background-color` scoped to `.light-theme`.
+  2. Class declarations on `document.body.light-theme` hold higher CSS specificity than inline styles placed solely on `document.documentElement` (`<html>`), causing SCSS compiled pink defaults on `body` to override inherited `html` tokens.
+- **Resolution Strategy**:
+  - `ThemeService.applyBrandTokens()` MUST inject runtime tokens onto **BOTH `document.documentElement` (`html`) AND `document.body` (`body`)**. Inline styles on `body.style` override `.light-theme` / `.dark-theme` CSS class rules.
+  - `theme.models.ts` maps all M3 container variables (`--mat-sys-surface-container-highest`, `--mat-sys-surface-container-high`, `--mat-sys-surface-container-low`, `--mat-sys-surface-container-lowest`, `--mat-select-panel-background-color`, `--mat-menu-container-color`, `--mdc-menu-surface-background-color`, `--mat-option-container-color`) to tenant `surfaceContainerColor`.
+  - `_overrides.scss` enforces `background-color: var(--fc-color-surface-container) !important;` on `.cdk-overlay-container` panels and `.mat-mdc-option` items.
+
+### 2. Button Icon Contrast Loss on Primary Buttons
+- **Symptom / Error Pattern**: Icons (e.g. `<mat-icon>download</mat-icon>`) inside filled primary buttons (`<button mat-flat-button color="primary">`) rendered in dark primary burgundy color instead of white, blending into the dark button background.
+- **Root Cause**: A generic `[color="primary"] .mat-icon` selector matched icons inside primary buttons and forced `color: var(--fc-color-primary)`.
+- **Resolution Strategy**:
+  - Scope `mat-icon.mat-primary` to standalone icons.
+  - Enforce `button.mat-mdc-button-base.mat-primary { .mat-icon { color: var(--fc-color-on-primary) !important; } }` in `_overrides.scss` so primary filled button icons always inherit `#FFFFFF` white text color.
+
+### 3. M3 Button Corner Rounding (`border-radius` / `--_mat-button-filled-container-shape`)
+- **Symptom / Error Pattern**: Material buttons (`mat-flat-button`, `mat-raised-button`) displayed full `9999px` pill-shaped rounded corners regardless of `--fc-radius-md`.
+- **Root Cause**: Angular Material 18/19 M3 uses an internal shape variable `--_mat-button-filled-container-shape`, which defaulted to `var(--mat-sys-corner-full)` (`9999px`).
+- **Resolution Strategy**:
+  - Override `--_mat-button-filled-container-shape` and `--mat-filled-button-container-shape` with `var(--fc-radius-md)` in `_overrides.scss` and `theme.models.ts`.
+  - Set `border-radius: var(--fc-radius-md, 8px) !important;` on `.mat-mdc-button-base` and `.mdc-button__ripple`.
+
+### 4. Topbar Icon & Profile Avatar Contrast Externalization
+- **Symptom / Error Pattern**: Topbar buttons and profile avatar icon blended with topbar background when switching tenant topbar background colors.
+- **Resolution Strategy**: Externalized `topbar.iconColor`, `topbar.avatarGradientStart`, `topbar.avatarGradientEnd`, and `topbar.avatarTextColor` in `TenantThemeConfig` / `tenant-themes.json` and mapped CSS custom properties `--fc-topbar-icon-color`, `--fc-topbar-avatar-start`, `--fc-topbar-avatar-end`, `--fc-topbar-avatar-text-color`.
+
+### 5. Menu Item Rounded Selection Visuals
+- **Symptom / Error Pattern**: Sidebar navigation menu items (`mat-nav-list`) showed rounded pill selection highlights.
+- **Resolution Strategy**: Enforced `border-radius: 0 !important;` on `.mat-mdc-list-item` in `_overrides.scss` and `sidebar-menu.component.ts` for clean, full-width rectangular selection visuals.
+
+### 6. Card Action Buttons Edge Sticking & Spacing
+- **Symptom / Error Pattern**: Card action buttons on Screen A, Screen B, and Home screens had no gap between buttons and touched container edges.
+- **Resolution Strategy**: Added `display: flex !important; gap: var(--fc-spacing-sm, 12px) !important; padding: var(--fc-spacing-md, 16px) !important;` to `mat-card-actions` in `_overrides.scss`.
+
