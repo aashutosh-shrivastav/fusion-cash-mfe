@@ -18,6 +18,9 @@ Welcome to the central documentation index for the Fusion Cash Management Micro 
 - [**03 - Foundation Modules Roadmap**](./03-foundation-modules-roadmap.md)  
   Prioritized inventory of P0 (Blocker), P1 (Critical), P2 (Important), and P3 (Nice-to-have) workspace modules.
 
+- [**04 - Theme Architecture Design**](./04-theme-architecture-design.md)  
+  In-depth design of the current theme system — SCSS layers, runtime ThemeService, CSS token mapping, MFE inheritance, backend CRUD API, and extensibility guide.
+
 ---
 
 ## 🛠️ P0 Manual Developer Setup Guides

@@ -1,35 +1,27 @@
 // libs/shared-theme/src/styles/theme.scss
 
-// ============================================================
-// Master Theme Entry Point
-//
-// Import this file ONCE in the Shell's styles.scss.
-// MFEs inherit the theme via CSS custom property inheritance.
-//
-// Usage in Shell's styles.scss:
-//   @use 'theme';
-// ============================================================
-
 @use '@angular/material' as mat;
 @use './material-theme' as fc-mat;
-
-// 4. Our design tokens (CSS custom properties)
 @use './tokens';
-
-// 5. Angular Material component overrides
 @use './overrides';
+
+// Import Material Icons and Roboto fonts from Google Fonts CDN
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 // 1. Angular Material core styles (typography, ripple, etc.)
 @include mat.core();
 
-// 2. Apply light theme by default
+// 2. Emit M3 System Level Colors (--mat-sys-*) + Component Themes for Light Theme
 :root,
 .light-theme {
+  @include mat.system-level-colors(fc-mat.$fc-light-theme);
   @include mat.all-component-themes(fc-mat.$fc-light-theme);
 }
 
-// 3. Dark theme via class toggle
+// 3. Emit M3 System Level Colors (--mat-sys-*) + Component Themes for Dark Theme
 .dark-theme {
+  @include mat.system-level-colors(fc-mat.$fc-dark-theme);
   @include mat.all-component-themes(fc-mat.$fc-dark-theme);
   color-scheme: dark;
 }

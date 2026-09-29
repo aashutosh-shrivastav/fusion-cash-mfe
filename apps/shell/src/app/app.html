@@ -1,15 +1,57 @@
+<!-- Shell Layout: Topbar + Main Content + Overlay Sidebar + Blurry Backdrop -->
 <div class="shell-layout">
-  <div class="sidebar">
-    <h2>Fusion Portal</h2>
-    <button routerLink="/">Home</button>
-    <button routerLink="/balance">Balance Service MFE</button>
-    <button routerLink="/payments">Payments MFE</button>
+
+  <!-- Topbar Component (Shared UI) -->
+  <fc-topbar
+    [title]="title"
+    [logoUrl]="logoUrl()"
+    [currentDateTime]="currentDateTime()"
+    [isDark]="isDark"
+    (toggleSidebar)="toggleSidebar()"
+    (toggleTheme)="toggleTheme()">
+  </fc-topbar>
+
+  <!-- Main Content + Footer Component (Shared UI) -->
+  <div class="shell-main">
+    <main class="shell-content">
+      <router-outlet></router-outlet>
+    </main>
+
+    <!-- Footer Component (Shared UI) -->
+    <fc-footer></fc-footer>
+  </div>
+
+  <!-- Blurry Backdrop Overlay (appears when sidebar is open) -->
+  @if (sidebarOpen()) {
+    <div
+      class="shell-backdrop"
+      (click)="closeSidebar()"
+      aria-hidden="true">
+    </div>
+  }
+
+  <!-- Overlay Sidebar Drawer (Overlaps topbar from top: 0, left: 0) -->
+  <aside
+    class="shell-sidebar"
+    [class.open]="sidebarOpen()"
+    aria-label="Sidebar navigation">
     
-    <button (click)="themeService.toggleTheme()" style="margin-top: 20px;">
-      {{ themeService.isDark() ? '☀️ Light Mode' : '🌙 Dark Mode' }}
-    </button>
-  </div>
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
+    <!-- Drawer Header with full-width centered logo and centered title below -->
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <img [src]="logoUrl()" alt="Tech Mahindra Logo" class="sidebar-brand-logo" />
+        <span class="brand-title">Fusion Portal</span>
+      </div>
+    </div>
+
+    <!-- Drawer Navigation Content -->
+    <div class="sidebar-menu-wrapper">
+      <fc-sidebar-menu
+        [menuItems]="menuItems"
+        [collapsed]="false"
+        (menuItemClicked)="closeSidebar()">
+      </fc-sidebar-menu>
+    </div>
+  </aside>
+
 </div>

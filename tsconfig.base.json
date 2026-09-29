@@ -32,6 +32,9 @@
       ],
       "@fusion-cash-mfe/shared-theme/*": [
         "./libs/shared-theme/src/*"
+      ],
+      "@fusion-cash-mfe/shared-ui": [
+        "./libs/shared-ui/src/index.ts"
       ]
     }
   },

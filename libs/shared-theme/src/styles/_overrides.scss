@@ -4,10 +4,8 @@
 // ============================================================
 // Angular Material Component Overrides
 //
-// Uses mat.*-overrides() mixins — the ONLY upgrade-safe way
+// Uses mat.*-overrides() mixins and global CDK overlay rules
 // to customize Angular Material component appearance.
-//
-// DO NOT override internal .mat-* or .mdc-* CSS classes.
 // ============================================================
 
 :root {
@@ -28,6 +26,60 @@
     filled-container-shape: var(--fc-radius-sm),
   ));
 
-  // Add more component overrides as needed.
-  // Refer to: https://material.angular.io/components/<component>/styling
+  // ── Select (Dropdowns) ──────────────────────────────────
+  @include mat.select-overrides((
+    panel-background-color: var(--fc-color-surface-container, #ffffff),
+  ));
+
+  // ── Datepicker (Calendar Overlays) ──────────────────────
+  @include mat.datepicker-overrides((
+    calendar-container-background-color: var(--fc-color-surface-container, #ffffff),
+  ));
+
+  // ── Menu ────────────────────────────────────────────────
+  @include mat.menu-overrides((
+    container-color: var(--fc-color-surface-container, #ffffff),
+  ));
+}
+
+// ── CDK Overlay Global Rules (Selects, Datepickers, Menus, Dialogs) ──
+// CDK overlay containers are appended to document <body> at root level.
+// We enforce opaque surface background, border-radius, and shadow on all overlays.
+
+.cdk-overlay-container {
+  .mat-mdc-select-panel,
+  .mat-datepicker-content,
+  .mat-mdc-autocomplete-panel,
+  .mat-mdc-menu-panel,
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: var(--fc-color-surface-container, #ffffff) !important;
+    color: var(--fc-color-on-surface, #212121) !important;
+    box-shadow: var(--fc-shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.18)) !important;
+    border: 1px solid var(--fc-color-outline-variant, rgba(0, 0, 0, 0.12));
+    border-radius: var(--fc-radius-md, 8px) !important;
+  }
+
+  // Datepicker calendar specific container resets
+  .mat-datepicker-content,
+  .mat-calendar {
+    background-color: var(--fc-color-surface-container, #ffffff) !important;
+    color: var(--fc-color-on-surface, #212121) !important;
+  }
+
+  // Select options hover and selection states
+  .mat-mdc-option {
+    color: var(--fc-color-on-surface, #212121) !important;
+    background-color: transparent;
+
+    &:hover,
+    &.mdc-list-item--selected,
+    &.mat-mdc-option-active {
+      background-color: color-mix(in srgb, var(--fc-color-primary, #E31837) 10%, transparent) !important;
+    }
+  }
+
+  // Active/selected option text color
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--fc-color-primary, #E31837) !important;
+  }
 }

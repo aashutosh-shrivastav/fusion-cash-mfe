@@ -4,29 +4,46 @@
 // ============================================================
 // Design Tokens (CSS Custom Properties)
 //
-// These are the canonical tokens consumed by ALL components
-// across ALL MFEs. They bridge Angular Material's system tokens
-// with our application-level design system.
-//
-// RULE: Components must ONLY use these tokens. Never use
-// hardcoded colors, font sizes, or spacing values.
+// Canonical tokens consumed by ALL components across ALL MFEs.
+// Bridges Angular Material M3 system tokens with our app design system.
 // ============================================================
 
 :root {
-  // ── Brand System Variables (M3 Overrides) ───────────────
-  // We override the generated M3 system variables with exact brand colors
-  // to ensure components use the exact hex codes (e.g., Impact Red).
-  --mat-sys-primary:              #{brand.$primary};
-  --mat-sys-on-primary:           #{brand.$on-primary};
-  --mat-sys-primary-container:    #{brand.$primary-container};
-  --mat-sys-on-primary-container: #{brand.$on-primary-container};
+  // ── Angular Material M3 System Variables ───────────────────
+  --mat-sys-primary:                      #{brand.$primary};
+  --mat-sys-on-primary:                   #{brand.$on-primary};
+  --mat-sys-primary-container:            #{brand.$primary-container};
+  --mat-sys-on-primary-container:         #{brand.$on-primary-container};
   
-  --mat-sys-secondary:              #{brand.$secondary};
-  --mat-sys-on-secondary:           #{brand.$on-secondary};
-  --mat-sys-secondary-container:    #{brand.$secondary-container};
-  --mat-sys-on-secondary-container: #{brand.$on-secondary-container};
+  --mat-sys-secondary:                    #{brand.$secondary};
+  --mat-sys-on-secondary:                 #{brand.$on-secondary};
+  --mat-sys-secondary-container:          #{brand.$secondary-container};
+  --mat-sys-on-secondary-container:       #{brand.$on-secondary-container};
 
-  // ── Brand Tokens ──────────────────────────────────────────
+  --mat-sys-tertiary:                     #{brand.$tertiary};
+  --mat-sys-error:                        #{brand.$error};
+  --mat-sys-on-error:                     #{brand.$on-error};
+
+  --mat-sys-surface:                      #{brand.$surface};
+  --mat-sys-surface-dim:                  #{brand.$surface-dim};
+  --mat-sys-surface-container:            #{brand.$surface-container};
+  --mat-sys-surface-container-low:        #{brand.$surface-container};
+  --mat-sys-surface-container-lowest:     #ffffff;
+  --mat-sys-surface-container-high:       #{brand.$surface-dim};
+  --mat-sys-surface-container-highest:    #{brand.$surface-dim};
+
+  --mat-sys-on-surface:                   #{brand.$on-surface};
+  --mat-sys-on-surface-variant:           #{brand.$on-surface-variant};
+  --mat-sys-outline:                      #{brand.$outline};
+  --mat-sys-outline-variant:              #{brand.$outline-variant};
+  --mat-sys-surface-tint:                 #{brand.$primary};
+
+  // ── Component Specific M3 System Tokens ────────────────────
+  --mat-select-panel-background-color:    var(--mat-sys-surface-container);
+  --mat-menu-container-color:             var(--mat-sys-surface-container);
+  --mat-datepicker-calendar-container-background-color: var(--mat-sys-surface-container);
+
+  // ── Application Brand Tokens ──────────────────────────────
   --fc-color-primary:             var(--mat-sys-primary);
   --fc-color-primary-container:   var(--mat-sys-primary-container);
   --fc-color-on-primary:          var(--mat-sys-on-primary);
@@ -34,18 +51,18 @@
   --fc-color-secondary:           var(--mat-sys-secondary);
   --fc-color-secondary-container: var(--mat-sys-secondary-container);
   --fc-color-on-secondary:        var(--mat-sys-on-secondary);
-  --fc-color-tertiary:            #{brand.$tertiary};
-  --fc-color-error:               #{brand.$error};
-  --fc-color-on-error:            #{brand.$on-error};
+  --fc-color-tertiary:            var(--mat-sys-tertiary);
+  --fc-color-error:               var(--mat-sys-error);
+  --fc-color-on-error:            var(--mat-sys-on-error);
 
-  // Surface colors - tied to M3 for automatic Light/Dark mode
-  --fc-color-surface:             var(--mat-sys-surface, #{brand.$surface});
-  --fc-color-surface-dim:         var(--mat-sys-surface-dim, #{brand.$surface-dim});
-  --fc-color-surface-container:   var(--mat-sys-surface-container, #{brand.$surface-container});
-  --fc-color-on-surface:          var(--mat-sys-on-surface, #{brand.$on-surface});
-  --fc-color-on-surface-variant:  var(--mat-sys-on-surface-variant, #{brand.$on-surface-variant});
-  --fc-color-outline:             var(--mat-sys-outline, #{brand.$outline});
-  --fc-color-outline-variant:     var(--mat-sys-outline-variant, #{brand.$outline-variant});
+  // Surface colors - tied to M3 system tokens for automatic Light/Dark mode
+  --fc-color-surface:             var(--mat-sys-surface);
+  --fc-color-surface-dim:         var(--mat-sys-surface-dim);
+  --fc-color-surface-container:   var(--mat-sys-surface-container);
+  --fc-color-on-surface:          var(--mat-sys-on-surface);
+  --fc-color-on-surface-variant:  var(--mat-sys-on-surface-variant);
+  --fc-color-outline:             var(--mat-sys-outline);
+  --fc-color-outline-variant:     var(--mat-sys-outline-variant);
 
   // ── Typography Tokens ─────────────────────────────────────
   --fc-font-family-base:      #{brand.$font-family-base};

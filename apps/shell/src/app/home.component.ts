@@ -1,109 +1,64 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
-import { ThemeManagerComponent } from './theme-manager.component';
-
+/**
+ * Shell Home — placeholder greeting page.
+ * This will be the default landing page when the user navigates to /home.
+ */
 @Component({
   selector: 'fc-home',
   standalone: true,
-  imports: [
-    CommonModule, 
-    MatCardModule, 
-    MatButtonModule, 
-    MatChipsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ThemeManagerComponent
-  ],
+  imports: [MatCardModule, MatIconModule],
   template: `
-    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
-      
-      <!-- Runtime Tenant Theme Manager -->
-      <fc-theme-manager></fc-theme-manager>
-      
-      <!-- Primary Card -->
+    <div class="home-container">
       <mat-card>
-        <mat-card-header>
-          <mat-card-title>Welcome to Fusion Portal</mat-card-title>
-          <mat-card-subtitle>Angular Material 3 Theming Demo</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content style="margin-top: 16px;">
-          <p style="margin-bottom: 24px;">
-            This home page uses standard <strong>Angular Material</strong> components to demonstrate the 
-            Impact Red & Steel Grey theme. Switch between Light and Dark mode using the sidebar to see 
-            how the material components dynamically adjust!
+        <mat-card-content class="greeting-content">
+          <mat-icon class="greeting-icon" color="primary">rocket_launch</mat-icon>
+          <h1 class="greeting-title">Welcome to Fusion Portal</h1>
+          <p class="greeting-subtitle">
+            Your unified cash management platform. Select a module from the sidebar to get started.
           </p>
-          
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button mat-flat-button color="primary">Primary Action</button>
-            <button mat-stroked-button color="primary">Stroked Button</button>
-            <button mat-button color="primary">Text Button</button>
-          </div>
         </mat-card-content>
       </mat-card>
-
-      <!-- Secondary Card with Chips -->
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>System Features</mat-card-title>
-        </mat-card-header>
-        <mat-card-content style="margin-top: 16px;">
-          <mat-chip-set>
-            <mat-chip color="primary" highlighted>MFE Architecture</mat-chip>
-            <mat-chip color="primary" highlighted>Angular 19</mat-chip>
-            <mat-chip color="primary" highlighted>Design Tokens</mat-chip>
-            <mat-chip color="primary" highlighted>Runtime Theming</mat-chip>
-          </mat-chip-set>
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Typography Card -->
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Typography Samples</mat-card-title>
-        </mat-card-header>
-        <mat-card-content style="margin-top: 16px; display: flex; flex-direction: column; gap: 12px;">
-          <h1 class="mat-headline-1">Headline 1</h1>
-          <h2 class="mat-headline-2">Headline 2</h2>
-          <h3 class="mat-headline-3">Headline 3</h3>
-          <p class="mat-body-1">This is a standard body paragraph (mat-body-1). It shows how text flows with the configured font family and color inside a material card.</p>
-          <p class="mat-caption">This is caption text (mat-caption).</p>
-        </mat-card-content>
-      </mat-card>
-
-      <!-- Form & Calendar Card -->
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Forms & Datepicker</mat-card-title>
-        </mat-card-header>
-        <mat-card-content style="margin-top: 16px; display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
-          
-          <mat-form-field appearance="outline" color="primary">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="Enter your username">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" color="primary">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-
-        </mat-card-content>
-      </mat-card>
-
     </div>
-  `
+  `,
+  styles: [`
+    .home-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+    }
+
+    .greeting-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--fc-spacing-3xl, 64px) var(--fc-spacing-2xl, 48px);
+    }
+
+    .greeting-icon {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+      margin-bottom: var(--fc-spacing-lg, 24px);
+    }
+
+    .greeting-title {
+      font-family: var(--fc-font-family-heading, 'Inter', sans-serif);
+      font-size: var(--fc-font-size-3xl, 30px);
+      font-weight: var(--fc-font-weight-bold, 700);
+      color: var(--fc-color-on-surface, #212121);
+      margin-bottom: var(--fc-spacing-sm, 8px);
+    }
+
+    .greeting-subtitle {
+      font-size: var(--fc-font-size-md, 16px);
+      color: var(--fc-color-on-surface-variant, #616161);
+      max-width: 400px;
+    }
+  `]
 })
 export class HomeComponent {}

@@ -1,0 +1,26 @@
+[
+  {
+    "tenantId": "tech-mahindra",
+    "tenantName": "Tech Mahindra (Default)",
+    "primaryColor": "#E31837",
+    "secondaryColor": "#4D4D4F",
+    "fontFamily": "AppCustomFont, Roboto, sans-serif",
+    "borderRadius": "8px"
+  },
+  {
+    "tenantId": "emerald-finance",
+    "tenantName": "Emerald Finance",
+    "primaryColor": "#00796B",
+    "secondaryColor": "#37474F",
+    "fontFamily": "AppCustomFont, Roboto, sans-serif",
+    "borderRadius": "12px"
+  },
+  {
+    "tenantId": "oceanic-bank",
+    "tenantName": "Oceanic Bank",
+    "primaryColor": "#1565C0",
+    "secondaryColor": "#263238",
+    "fontFamily": "AppCustomFont, Roboto, sans-serif",
+    "borderRadius": "4px"
+  }
+]
