@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '@fusion-cash-mfe/shared-theme';
 
 @Component({
   imports: [CommonModule],
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class RemoteEntryComponent {
+  private themeService = inject(ThemeService);
   data: any = null;
 
   async fetchData() {

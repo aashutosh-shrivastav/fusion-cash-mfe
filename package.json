@@ -2,7 +2,12 @@
   "name": "@fusion-cash-mfe/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "nx run-many -t build --all",
+    "build:shell": "nx build shell",
+    "build:balance": "nx build balance",
+    "build:payments": "nx build payments"
+  },
   "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "^22.1.7",

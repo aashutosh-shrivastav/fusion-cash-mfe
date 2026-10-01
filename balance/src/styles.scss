@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'theme';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fc-font-family-base);
+  color: var(--fc-color-on-surface);
+  background-color: var(--fc-color-surface);
+  transition: background-color var(--fc-transition-normal),
+              color var(--fc-transition-normal);
+}
