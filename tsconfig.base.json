@@ -35,6 +35,18 @@
       ],
       "@fusion-cash-mfe/shared-ui": [
         "./libs/shared-ui/src/index.ts"
+      ],
+      "@fusion-cash-mfe/auth": [
+        "./libs/auth/src/index.ts"
+      ],
+      "@fusion-cash-mfe/api-client": [
+        "./libs/api-client/src/index.ts"
+      ],
+      "@fusion-cash-mfe/api-client/*": [
+        "./libs/api-client/src/lib/generated/*"
+      ],
+      "@fusion-cash-mfe/shared-i18n": [
+        "./libs/shared-i18n/src/index.ts"
       ]
     }
   },

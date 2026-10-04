@@ -37,14 +37,36 @@ npx nx serve balance
 npx nx serve payments
 ```
 
-### 3. Unit Testing & Building
+### 3. API Client Code Generation (OpenAPI)
+
+Before running or building the applications, generate TypeScript services and DTO models from OpenAPI specifications:
 
 ```bash
-# Run unit tests for affected projects
-npx nx affected -t test
+# Generate API clients for all registered OpenAPI specifications
+npm run generate:api
+
+# Generate API client for a specific specification
+npm run generate:api:fusion-cash
+```
+
+#### Adding New OpenAPI Specifications
+1. Add your new YAML spec file (e.g. `accounts-api.yaml`) to `libs/api-client/openapi-spec/`.
+2. Add a sub-command script to `package.json`:
+   ```json
+   "generate:api:accounts": "npx openapi-typescript-codegen --input libs/api-client/openapi-spec/accounts-api.yaml --output libs/api-client/src/lib/generated/accounts"
+   ```
+3. Append `&& npm run generate:api:accounts` to the master `"generate:api"` script in `package.json`.
+
+---
+
+### 4. Unit Testing & Building
+
+```bash
+# Run unit tests across workspace
+npm run generate:api && npx nx run-many -t test --all
 
 # Build production bundles
-npx nx build shell
+npx nx run-many -t build --all
 ```
 
 ---

@@ -85,17 +85,43 @@ export const appConfig: ApplicationConfig = {
 
 ---
 
-## 4. Static Config File
+## 4. Microservice-Centric Dynamic Configuration (1 Microservice = 1 Base URL)
 
-Add `apps/shell/src/assets/config/app-config.json`:
+Configuration maps runtime environment URLs to **Backend Microservices** (not individual Swagger files). A single Microservice can host multiple Swagger/OpenAPI specs.
+
+Add `apps/shell/public/assets/config/app-config.json`:
 
 ```json
 {
   "production": false,
-  "apiBaseUrl": "http://localhost:4000/api",
-  "authUrl": "http://localhost:4000/auth",
-  "enableFeatureFlags": {
-    "newPaymentsFlow": true
+  "environment": "development",
+  "apiBaseUrl": "http://localhost:3000/api/v1",
+  "microservices": {
+    "balanceMicroservice": "http://localhost:3000/api/v1/balance",
+    "paymentsMicroservice": "http://localhost:3000/api/v1/payments",
+    "userMicroservice": "http://localhost:3000/api/v1/user",
+    "authMicroservice": "https://auth.fusion-cash.internal/v1"
+  },
+  "version": "1.0.0-dev",
+  "enableLogging": true,
+  "featureFlags": {
+    "enableNewPaymentsUI": true
   }
 }
+```
+
+---
+
+## 5. Dynamic Endpoint Retrieval in Components & Services
+
+```typescript
+private configService = inject(AppConfigService);
+
+// 1. Get dynamic base URL for any named microservice:
+const balanceUrl = this.configService.getMicroserviceUrl('balanceMicroservice'); 
+// Output: 'http://localhost:3000/api/v1/balance'
+
+// 2. Construct full endpoint URL for a specific microservice action:
+const fullUrl = this.configService.getApiUrl('/summary', 'balanceMicroservice');
+// Output: 'http://localhost:3000/api/v1/balance/summary'
 ```

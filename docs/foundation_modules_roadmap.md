@@ -19,15 +19,15 @@
 
 ### 🔴 P0 — Team Blockers (Must have before first story)
 
-| # | Module | Nx Library | Description |
-|---|--------|------------|-------------|
-| 1 | **Unit Testing (Jest)** | workspace config | Jest setup with Angular presets, test utilities, coverage thresholds. Every MFE and lib should be testable from day 1. |
-| 2 | **API Client Generation (OpenAPI)** | `libs/api-client` | Auto-generate TypeScript services, models, and enums from Swagger/OpenAPI YAML. Components consume typed services — zero hand-written HTTP calls. |
-| 3 | **HTTP Interceptor Chain** | `libs/shared-core` | Auth token injection, global error handling, loading spinner trigger, request/response logging, retry with backoff. Every API call flows through this. |
-| 4 | **Environment & Runtime Config** | `libs/shared-core` | Per-environment configs (dev/QA/staging/prod). Runtime config loaded via `APP_INITIALIZER` — no hardcoded URLs. Feature flags support. |
-| 5 | **Auth Guards & Token Management** | `libs/auth` | JWT/OAuth token storage, refresh logic, route guards (`canActivate`, `canMatch`), role-based access. Shell manages auth, MFEs consume it. |
-| 6 | **Theming (Angular Material + CSS Vars)** | `libs/shared-theme` | Angular Material with custom theme driven by CSS custom properties. Branding-ready: swap variables at runtime for white-labeling. |
-| 7 | **i18n (ngx-translate)** | `libs/shared-i18n` | JSON key-value based multi-language support. Each MFE has its own translation files. Shared lib provides `TranslateModule` config + language switcher service. |
+| # | Module | Nx Library | Description | Status |
+|---|--------|------------|-------------|--------|
+| 1 | **Unit Testing (Jest)** | workspace config | Jest setup with Angular presets, test utilities, coverage thresholds. Every MFE and lib should be testable from day 1. | ✅ Completed |
+| 2 | **API Client Generation (OpenAPI)** | `libs/api-client` | Auto-generate TypeScript services, models, and enums from Swagger/OpenAPI YAML. Components consume typed services — zero hand-written HTTP calls. | ✅ Completed |
+| 3 | **HTTP Interceptor Chain** | `libs/shared-core` | Auth token injection, global error handling, loading spinner trigger, request/response logging, retry with backoff. Every API call flows through this. | ✅ Completed |
+| 4 | **Environment & Runtime Config** | `libs/shared-core` | Per-environment configs (dev/QA/staging/prod). Runtime config loaded via `APP_INITIALIZER` — no hardcoded URLs. Feature flags support. | ✅ Completed |
+| 5 | **Auth Guards & Token Management** | `libs/auth` | JWT/OAuth token storage, refresh logic, route guards (`canActivate`, `canMatch`), role-based access. Shell manages auth, MFEs consume it. | ✅ Completed |
+| 6 | **Theming (Angular Material + CSS Vars)** | `libs/shared-theme` | Angular Material with custom theme driven by CSS custom properties. Branding-ready: swap variables at runtime for white-labeling. | ✅ Completed |
+| 7 | **i18n (ngx-translate)** | `libs/shared-i18n` | JSON key-value based multi-language support. Each MFE has its own translation files. Shared lib provides `TranslateModule` config + language switcher service. | ✅ Completed |
 
 ---
 
@@ -191,8 +191,8 @@ gantt
 2. **Auth Strategy:** JWT with refresh tokens vs. OAuth2/OIDC flow?
    - *Recommendation:* Build the token service as an abstraction. Swap implementation later without touching MFEs.
 
-3. **OpenAPI Codegen Tool:** `openapi-generator-cli` (Java-based) vs. `@openapitools/openapi-generator-cli` (npm) vs. `orval` (TypeScript-native)?
-   - *Recommendation:* `@openapitools/openapi-generator-cli` with `typescript-angular` generator for Angular-native services.
+3. **OpenAPI Codegen Tool:** `openapi-typescript-codegen` (pure Node.js / zero Java dependency).
+   - *Architecture & Workflow:* Terminal-based CLI scripts in `package.json`. Each spec in `libs/api-client/openapi-spec/` has a corresponding script (e.g. `generate:api:<spec>`). The master `generate:api` script chains all sub-scripts via `&&`. Required prior to application startup/build.
 
 4. **Component Library Scope:** Build from scratch vs. wrap Angular Material components?
    - *Recommendation:* Wrap Angular Material. Don't reinvent buttons and modals. Focus shared-ui on domain-specific patterns.
