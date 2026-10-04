@@ -47,3 +47,6 @@ Thumbs.db
 .angular
 
 __screenshots__/
+
+# Auto-generated OpenAPI Clients
+libs/api-client/src/lib/generated/

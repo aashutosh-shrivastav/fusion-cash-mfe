@@ -1,0 +1,206 @@
+openapi: 3.0.3
+info:
+  title: FusionCash Platform API
+  description: OpenAPI 3.0 Specification for FusionCash Banking and Payments Services
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local Development API Server
+
+paths:
+  /accounts:
+    get:
+      summary: Get all accounts for current user
+      operationId: getAccounts
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: List of bank accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankAccount'
+
+  /balance/summary:
+    get:
+      summary: Get global balance summary
+      operationId: getBalanceSummary
+      tags:
+        - Balance
+      responses:
+        '200':
+          description: Global consolidated balance details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceSummary'
+
+  /payments:
+    get:
+      summary: Get payment transaction history
+      operationId: getPayments
+      tags:
+        - Payments
+      responses:
+        '200':
+          description: Payment transaction list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentTransaction'
+    post:
+      summary: Initiate new payment transfer
+      operationId: createPayment
+      tags:
+        - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentRequest'
+      responses:
+        '201':
+          description: Payment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTransaction'
+
+  /user/profile:
+    get:
+      summary: Get current authenticated user profile
+      operationId: getUserProfile
+      tags:
+        - User
+      responses:
+        '200':
+          description: User profile details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+
+components:
+  schemas:
+    BankAccount:
+      type: object
+      required:
+        - id
+        - accountNumber
+        - accountName
+        - currency
+        - availableBalance
+      properties:
+        id:
+          type: string
+        accountNumber:
+          type: string
+        accountName:
+          type: string
+        currency:
+          type: string
+        availableBalance:
+          type: number
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE, FROZEN]
+
+    BalanceSummary:
+      type: object
+      required:
+        - totalBalanceUSD
+        - availableLiquidity
+        - pendingTransactionsCount
+        - accountsCount
+      properties:
+        totalBalanceUSD:
+          type: number
+        availableLiquidity:
+          type: number
+        pendingTransactionsCount:
+          type: integer
+        accountsCount:
+          type: integer
+        lastUpdated:
+          type: string
+
+    PaymentTransaction:
+      type: object
+      required:
+        - transactionId
+        - senderAccount
+        - recipientName
+        - recipientAccount
+        - amount
+        - currency
+        - status
+        - timestamp
+      properties:
+        transactionId:
+          type: string
+        senderAccount:
+          type: string
+        recipientName:
+          type: string
+        recipientAccount:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        status:
+          type: string
+          enum: [COMPLETED, PENDING, FAILED, PROCESSING]
+        timestamp:
+          type: string
+        referenceNote:
+          type: string
+
+    CreatePaymentRequest:
+      type: object
+      required:
+        - senderAccount
+        - recipientName
+        - recipientAccount
+        - amount
+        - currency
+      properties:
+        senderAccount:
+          type: string
+        recipientName:
+          type: string
+        recipientAccount:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        referenceNote:
+          type: string
+
+    UserProfile:
+      type: object
+      required:
+        - id
+        - username
+        - email
+        - fullName
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        fullName:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
