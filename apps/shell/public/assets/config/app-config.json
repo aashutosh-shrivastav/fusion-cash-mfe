@@ -1,0 +1,25 @@
+{
+  "production": false,
+  "environment": "development",
+  "apiBaseUrl": "http://localhost:3000/api/v1",
+  "microservices": {
+    "balanceMicroservice": "http://localhost:3000/api/v1/balance",
+    "paymentsMicroservice": "http://localhost:3000/api/v1/payments",
+    "userMicroservice": "http://localhost:3000/api/v1/user",
+    "authMicroservice": "https://auth.fusion-cash.internal/v1"
+  },
+  "version": "1.0.0-dev",
+  "enableLogging": true,
+  "auth": {
+    "authority": "https://auth.fusion-cash.internal",
+    "clientId": "fusion-cash-mfe-shell",
+    "redirectUri": "http://localhost:4200/callback",
+    "scopes": ["openid", "profile", "email", "finance.read", "finance.write"]
+  },
+  "featureFlags": {
+    "enableNewPaymentsUI": true,
+    "enableAnalytics": true,
+    "enableMultiCurrency": true,
+    "enableDarkTheme": true
+  }
+}
