@@ -1,0 +1,37 @@
+{
+  "COMMON": {
+    "WELCOME": "Bienvenido de nuevo",
+    "LOGOUT": "Cerrar sesión",
+    "SETTINGS": "Configuración",
+    "THEME": "Tema",
+    "LANGUAGE": "Idioma",
+    "SEARCH": "Buscar...",
+    "CANCEL": "Cancelar",
+    "SAVE": "Guardar cambios",
+    "STATUS": "Estado",
+    "AMOUNT": "Monto",
+    "DATE": "Fecha",
+    "ACTIONS": "Acciones"
+  },
+  "SHELL": {
+    "TITLE": "Portal FusionCash",
+    "NAV_HOME": "Visión general",
+    "NAV_BALANCE": "Saldos y Liquidez",
+    "NAV_PAYMENTS": "Transferencias y Pagos"
+  },
+  "BALANCE": {
+    "TITLE": "Resumen de saldos",
+    "TOTAL_BALANCE": "Saldo total de cartera",
+    "AVAILABLE_LIQUIDITY": "Liquidez disponible",
+    "ACTIVE_ACCOUNTS": "Cuentas activas",
+    "PENDING_TRANSACTIONS": "Pendientes"
+  },
+  "PAYMENTS": {
+    "TITLE": "Gestión de pagos",
+    "NEW_PAYMENT": "Iniciar transferencia",
+    "RECIPIENT": "Nombre del destinatario",
+    "ACCOUNT_NUMBER": "Número de cuenta",
+    "REFERENCE": "Nota de referencia",
+    "SUBMIT_TRANSFER": "Confirmar y enviar"
+  }
+}

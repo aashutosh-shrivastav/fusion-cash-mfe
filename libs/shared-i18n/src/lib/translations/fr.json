@@ -1,0 +1,37 @@
+{
+  "COMMON": {
+    "WELCOME": "Bienvenue",
+    "LOGOUT": "Se déconnecter",
+    "SETTINGS": "Paramètres",
+    "THEME": "Thème",
+    "LANGUAGE": "Langue",
+    "SEARCH": "Rechercher...",
+    "CANCEL": "Annuler",
+    "SAVE": "Enregistrer les modifications",
+    "STATUS": "Statut",
+    "AMOUNT": "Montant",
+    "DATE": "Date",
+    "ACTIONS": "Actions"
+  },
+  "SHELL": {
+    "TITLE": "Portail FusionCash",
+    "NAV_HOME": "Aperçu",
+    "NAV_BALANCE": "Soldes et Liquidité",
+    "NAV_PAYMENTS": "Virements et Paiements"
+  },
+  "BALANCE": {
+    "TITLE": "Aperçu des soldes",
+    "TOTAL_BALANCE": "Solde total du portefeuille",
+    "AVAILABLE_LIQUIDITY": "Liquidité disponible",
+    "ACTIVE_ACCOUNTS": "Comptes actifs",
+    "PENDING_TRANSACTIONS": "Opérations en attente"
+  },
+  "PAYMENTS": {
+    "TITLE": "Gestion des paiements",
+    "NEW_PAYMENT": "Initier un virement",
+    "RECIPIENT": "Nom du destinataire",
+    "ACCOUNT_NUMBER": "Numéro de compte",
+    "REFERENCE": "Note de référence",
+    "SUBMIT_TRANSFER": "Confirmer et envoyer"
+  }
+}

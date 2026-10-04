@@ -1,0 +1,37 @@
+{
+  "COMMON": {
+    "WELCOME": "Welcome back",
+    "LOGOUT": "Sign Out",
+    "SETTINGS": "Settings",
+    "THEME": "Theme",
+    "LANGUAGE": "Language",
+    "SEARCH": "Search...",
+    "CANCEL": "Cancel",
+    "SAVE": "Save Changes",
+    "STATUS": "Status",
+    "AMOUNT": "Amount",
+    "DATE": "Date",
+    "ACTIONS": "Actions"
+  },
+  "SHELL": {
+    "TITLE": "FusionCash Portal",
+    "NAV_HOME": "Overview",
+    "NAV_BALANCE": "Balances & Liquidity",
+    "NAV_PAYMENTS": "Transfers & Payments"
+  },
+  "BALANCE": {
+    "TITLE": "Balance Overview",
+    "TOTAL_BALANCE": "Total Portfolio Balance",
+    "AVAILABLE_LIQUIDITY": "Available Liquidity",
+    "ACTIVE_ACCOUNTS": "Active Accounts",
+    "PENDING_TRANSACTIONS": "Pending Items"
+  },
+  "PAYMENTS": {
+    "TITLE": "Payment Management",
+    "NEW_PAYMENT": "Initiate Transfer",
+    "RECIPIENT": "Recipient Name",
+    "ACCOUNT_NUMBER": "Account Number",
+    "REFERENCE": "Reference Note",
+    "SUBMIT_TRANSFER": "Confirm & Send"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "COMMON": {
+    "WELCOME": "مرحباً بعودتك",
+    "LOGOUT": "تسجيل الخروج",
+    "SETTINGS": "الإعدادات",
+    "THEME": "المظهر",
+    "LANGUAGE": "اللغة",
+    "SEARCH": "بحث...",
+    "CANCEL": "إلغاء",
+    "SAVE": "حفظ التغييرات",
+    "STATUS": "الحالة",
+    "AMOUNT": "المبلغ",
+    "DATE": "التاريخ",
+    "ACTIONS": "الإجراءات"
+  },
+  "SHELL": {
+    "TITLE": "بوابة فيوجن كاش",
+    "NAV_HOME": "نظرة عامة",
+    "NAV_BALANCE": "الأرصدة والسيولة",
+    "NAV_PAYMENTS": "التحويلات والمدفوعات"
+  },
+  "BALANCE": {
+    "TITLE": "ملخص الأرصدة",
+    "TOTAL_BALANCE": "إجمالي رصيد المحفظة",
+    "AVAILABLE_LIQUIDITY": "السيولة المتاحة",
+    "ACTIVE_ACCOUNTS": "الحسابات النشطة",
+    "PENDING_TRANSACTIONS": "العمليات المعلقة"
+  },
+  "PAYMENTS": {
+    "TITLE": "إدارة المدفوعات",
+    "NEW_PAYMENT": "بدء تحويل جديد",
+    "RECIPIENT": "اسم المستفيد",
+    "ACCOUNT_NUMBER": "رقم الحساب",
+    "REFERENCE": "ملاحظة المرجع",
+    "SUBMIT_TRANSFER": "تأكيد وإرسال"
+  }
+}
