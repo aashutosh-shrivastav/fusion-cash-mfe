@@ -24,6 +24,9 @@ Welcome to the central documentation index for the Fusion Cash Management Micro 
 - [**05 - Branding Strategy & Runtime Architecture**](./05-branding-strategy-and-runtime-architecture.md)  
   Hierarchical component-segregated tenant JSON schema, dark mode surface tokens, TypeScript models, and MFE developer coding guidelines.
 
+- [**06 - Cross-MFE Communication Design**](./06-cross-mfe-communication-design-doc.md)  
+  Comprehensive evaluation, trade-off matrix, use case guidelines, and implementation blueprint for Shell ↔ Remote inter-MFE messaging.
+
 ---
 
 ## 🛠️ P0 Manual Developer Setup Guides
